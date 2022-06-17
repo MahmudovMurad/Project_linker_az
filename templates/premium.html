@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block menu %}
+        
+
+        
+
+        <!-- <div class="no-result">
+            Nəticə yoxdur
+        </div> -->
+
+        <!-- en son yuklenenler -->
+        <section id="most-loaded-books">
+             
+            <div class="row border border-left-0 border-right-0 border-top-0 pb-3 mb-5" style = 'border-color: var(--thirdColor);'>
+                <div class="col-12 d-flex align-items-end">
+                    <img src="{% static 'Icons/icon2.png' %}" alt="" class="icons-style ml-2">
+                    <h3 class="section-title font-weight-bolder ml-3 text_color" style="margin-top: 10px;">Premium elanlar</h3>
+                </div>
+            </div>
+
+            <div class="books d-flex justify-content-around flex-wrap posts" >
+                {% for post in premium %}
+                <a target="_blank" href="{% url 'post-detail' post.id %}" style="color: black; text-decoration: none; height: 105px;">
+                <div class="card mb-5 border-5 shadow" style="max-width: 36rem; max-height: 105px !important; border-radius: 15px;">
+                    {% if post.preminium == True %}
+                    <div class="premium">Premium</div>
+                    {% endif %}
+
+                    {% if post.linktype == 'Whatsapp' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 17px; top: 10px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Telegram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 17px; top: 10px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/telegram-app--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Instagram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 17px; top: 10px; height: 28px; width: 28px;"><img src="{% static 'Icons/instalogo.png' %}" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'TikTok' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 17px; top: 10px; height: 28px; width: 28px;"><img src="https://img.icons8.com/material/50/000000/tiktok.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Facebook' %}                                                                        
+                    <div class="socialmediaicn" style="position: absolute; right: 17px; top: 10px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Youtube' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 17px; top: 10px; height: 28px; width: 28px;"><img src="{% static 'Icons/youtubeicon.png' %}" width="100%" height="100%"/></div>
+
+                    {% endif %}
+                  
+                    <!-- <div class="socialmediaicn" style="position: absolute; right: 17px; top: 10px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="100%" height="100%"/></div> -->
+                    
+                    <div class="row no-gutters">
+                        <div class="" style="border-radius: 50% !important; height: 100px; width: 100px; padding: 9px; padding-left: 15px;">
+                            {% if post.image %}
+                            <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% else %}
+                            <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% endif %}
+                        </div>
+                        <div class="col-8">
+                            <div class="card-body" style="height: 100%;">
+                                <p class="blockquote text_color m-0 mb-1"><span style="color: black;">#{{ post.category.title }}</span></p>
+                                <h2 style="font-weight: 700;">{{ post.title }}</h2>
+                                <div class="row" style="display: flex; justify-content: space-between; ">
+                                    <div></div>
+
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+
+            </div>
+            
+        </section>
+
+       
+        </section>
+
+       
+        <!-- elaqe -->
+        <!-- <section id="contact">
+                
+            <div class="row border border-left-0 border-right-0 border-top-0 pb-3 mb-5" style = 'border-color: var(--thirdColor);'>
+                <div class="col-12 d-flex align-items-end">
+                    <img src="Icons/mail.svg" alt="" class="ml-2">
+                    <h3 class="section-title font-weight-bolder ml-3 mb-1 text_color">Əlaqə</h3>
+                </div>
+            </div>
+
+            <h3 class="h3 text-center">Reklam və İş birliyi üçün</h3>
+            
+            <form action="#" class="w-100 my-5">
+                <div class="row">
+                    
+                    <div class="col-md-6 col-12 text-center text-md-right my-5 my-md-0 pr-md-5 px-4">
+                        <input type="text" class = "m-md-2 m-0 p-0 p-md-2 pl-0 pl-md-4 p-0 py-3 border-0 w-100 w-md-50 h3" placeholder="Adınız.." style = "outline: none;border-bottom: .1rem solid var(--thirdColor) !important;"><br>
+                        <input type="text" class = "m-md-2 m-0 p-0 p-md-2 pl-0 pl-md-4 p-0 py-3 border-0 w-100 w-md-50 h3" placeholder="Mailiniz..." style = "outline: none;border-bottom: .1rem solid var(--thirdColor) !important;"><br>
+                        <input type="text" class = "m-md-2 m-0 p-0 p-md-2 pl-0 pl-md-4 p-0 py-3 border-0 w-100 w-md-50 h3" placeholder="Mail başlığı..." style = "outline: none;border-bottom: .1rem solid var(--thirdColor) !important;">
+                    </div>
+                    
+                    <div class="col-md-6 col-12 text-center text-md-left pl-md-5 p-4">
+                        <textarea name="" id="" cols="30" rows="5" class = "w-md-75 w-100 h3 p-2 pl-4 border-0" placeholder="Mesajınız..." style = "outline: none;border: .1rem solid var(--thirdColor) !important;"></textarea>
+                    </div>
+                    
+                </div>
+
+                <div class="text-center my-5">
+                    <button class="btn btn-lg btn-outline-danger">Submit</button>
+                </div>
+
+            </form>
+
+        </section> -->
+
+    </div> 
+
+        {% endblock %}

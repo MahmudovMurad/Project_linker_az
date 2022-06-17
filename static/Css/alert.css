@@ -1,0 +1,278 @@
+.div1{
+    background-color: #6679fb;
+    border-radius: 10px;
+    width: 348px;
+    height: 380px;
+    font-family: 'Inter';
+    opacity: 100%;
+    position: fixed;
+    z-index: 5;
+    opacity: 100%;
+    margin: auto;
+
+}
+
+.personal_cbn_sc{
+    display: none;
+    position: fixed;
+    z-index: 10001;
+    background-color: rgba(211, 198, 198, 0.856);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.number_shadow{
+    display: flex;
+    position: fixed;
+    z-index: 10001;
+    background-color: rgba(211, 198, 198, 0.856);
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+#img1{
+    margin-top: 30px;
+    width: 195px;
+    height: 150px;
+}
+.div2{
+    
+    height: 200px;
+     width: 100%;
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+   
+    position: relative;
+    color: white;
+}
+.div3{
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    color: white;
+    font-size: 23px;
+    
+    
+}
+
+.but1{
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    background-color: #e8b11b;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 9px 38px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.div4{
+    margin: auto;
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 9px;
+}
+
+.div55{
+    color: white;
+    margin: auto;
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+.but22{
+    color: white;
+    border: none;
+    background-color:#6679fb;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+
+/* nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn */
+
+
+
+
+
+#aimg1{
+    margin-top: 50px;
+    width: 80px;
+    height: 70px;
+}
+.adiv2{
+     
+    height: 200px;
+     width: 100%;
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    position: relative;
+    color: white;
+}
+
+
+.abut1{
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    background-color: #ffb700;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+.adivOne{
+    display: none;
+    background-color: #6679fb;
+    border-radius: 10px;
+    width: 348px;
+    height: 375px;
+
+}
+
+#atxt4{
+    margin-top: 10px;
+    font-size: 20px;
+}
+.adiv4{
+    margin: auto;
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#atxt1{
+    font-size: 13px;
+}
+
+
+
+.abut2{
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    background-color: #e8b11b;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 9px 38px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.adiva{
+
+
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    margin-left: 30px;
+    position: relative;
+    color: white;
+    padding-right: 30px;
+    
+    
+}
+.adiv5{
+    color: white;
+    margin: auto;
+    display: block;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center; 
+    margin-top: 20px;
+}
+
+#atxt1{
+    text-align: left;
+    font-size: 15px;
+    margin-top: 19px;
+}
+
+
+
+#atxt2{
+    margin-top: 20px;
+    text-align: left;
+    font-size: 12px;
+}
+
+#atxt3{
+    text-align: left;
+    font-size: 12px;
+}
+
+
+
+#atxt5{
+    text-align: left;
+    margin-top: 20px;
+    font-size: 12px;
+}
+
+#atxt6{
+    text-align: left;
+    font-size: 12px;
+}
+
+.adiv6{
+    margin-top: 9px;
+    justify-content: center;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    flex-direction: column;
+}
+
+.abut3{
+      background-color: #6679fb;
+      border: none;
+      color: white;
+      cursor: pointer;
+}

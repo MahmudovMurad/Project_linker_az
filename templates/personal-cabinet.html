@@ -1,0 +1,315 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block menu %}
+<link rel="stylesheet" href="{% static 'Scss/personal-cabinet.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'Scss/animation.css' %}"> -->
+
+    <style>
+        .header{
+            height: 65px !important;
+        }
+        .search{
+            visibility: hidden;
+        }
+        .social_all{
+            display: none !important;
+        }
+        .add-book-btn{
+            display: none !important;
+        }
+    </style>
+    <div class="personal_cbn_sc" id="personal_cbn_sc">
+        
+        
+        
+        <div id="panel" class="div1">
+               <div class="div2">
+                   <img id="img1" src="{% static 'Icons/coinsvg.svg' %}" alt="">
+               </div>
+            <div class="div3">
+           Coin'ləri topla, ödənişsiz<br>
+           premium reklam qazan !
+       </div>
+        <div class="div4">
+               <button class="but1" onclick="myFunction()" type="button">Ətraflı öyrən</button>
+    
+        </div>
+                   
+    
+       <div class="div55">
+           <button class="but22" onclick="myFunction1()" type="button">Daha sonra</button>
+       </div>
+    
+        </div>
+
+        <div id="panel2" class="adivOne">
+       
+            <div class="adiva">
+                <div id="atxt4"><strong>Linker Coin Sistemi</strong></div>
+                
+                <div id="atxt2">1. Saytdakı elanlara daxil olun.
+                    <div id="atxt6">
+                           2. Məlumat səhifəsində "Paylaş" butonuna  əyərək &nbsp&nbsp&nbsp&nbspelanın linkini kopyalayın.
+                    </div> 
+     
+                       </div>
+                <div id="atxt3">
+                    3. Əldə etdiyiniz linki öz kanal/qruplarınızda &nbsp&nbsp&nbsp&nbsppaylaşın. Linkdən keçid edən hər bir şəxs adi &nbsp&nbsp&nbsp&nbspelanlar üçün 1 coin, premium elanlar üçün isə 2 &nbsp&nbsp&nbsp&nbspcoin 
+                    olaraq hesablanır.
+                     Coin hesabınızı şəxsi &nbsp&nbsp&nbsp&nbspkabinetinizdə görə bilərsiniz.
+                   </div> 
+                 <div id="atxt5">
+                     Topladığınız coin'lər ilə saytda premium reklam əldə edə bilərsiniz
+                   </div>  
+     
+                  
+          
+     </div>
+        
+                   
+     
+       <div class="adiv5">
+           <button class="abut2" type="button" onclick="myFunction1()">Anladım</button>
+       </div>
+     
+       <div class="adiv6">
+        <button class="abut3" type="button" onclick="window.location.href='https://wa.me/994508316695';">Operator yardımı</button>
+           </div>
+     
+        </div>
+          
+    
+    </div>
+
+
+<script>
+        function myFunction() {
+          document.getElementById("panel").style.display = "none";
+          document.getElementById("panel2").style.display = "block";
+        }
+
+        function myFunction1() {
+          document.getElementById("personal_cbn_sc").style.display = "none";
+        }
+ </script>
+
+
+
+        <section id="personal-cabinet">
+            <div class = "d-flex align-items-center ml-0 ml-md-4 mt-4 mt-md-0 my-5 justify-content-center">
+                
+                <!-- <img src="../Icons/edit.svg" alt="" class = "icons-style ml-4 cursor-pointer" onclick = "falseDisabled(this)"> -->
+                <div class="btn btn-outline-danger ml-2 p-2 px-4 done-input-change" onclick = "trueDisabled(this)">Bitdi</div>
+            </div>
+
+       
+           
+                <div class="col-12 d-flex align-items-end">
+                    
+                    <h3 class="section-title font-weight-bolder ml-3 text-danger" style="color: #6679fb !important;    margin-top: -25px;
+                    margin-bottom: 20px;">Elanlarım</h3>
+                </div>
+            </div>
+
+           
+
+                      <!-- Coins hesabi -->
+            <div class="coinst_system">
+                <div class="first_coins_part">
+                    <div class="coins_ttl">
+                        Coin Hesabınız
+                    </div>
+                    <div class="all_coins" style="display: flex;">
+                    <div class="coins_value">{{ user_id }}</div><sub class="coins_sub">LNC</sub>
+                </div>
+                </div>
+                <div class="second_coins_part">
+                    <div style="cursor: pointer;" class="coins_help" id="coins_help" onclick="myFunction2()">
+                        Yardım
+                    </div>
+                    <div class="coins_noti">
+                        <div class="coins_noti_icon" style="display: flex; align-items: center;">
+                                <img style="object-fit: contain;" width="18px" src="{% static 'Icons/notification.png' %}" alt="">
+                        </div>
+                        <div class="coins_noti_txt">
+                            Coin toplamadan sizə ən uyğun 
+                            məbləğdə premium reklam əldə 
+                            edə bilərsiniz
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                        function myFunction2() {
+                        document.getElementById("personal_cbn_sc").style.display = "flex";
+                        }
+ 
+            </script>
+
+
+
+
+ <div class="books d-flex justify-content-around flex-wrap">
+                {% for post in post_list %}
+                
+                <div class="card mb-5 border-5 shadow" style="max-width: 36rem; max-height: 105px !important; border-radius: 15px;">
+                    {% if post.preminium == True %}
+                    <div class="premium">Premium</div>
+                    {% endif %}
+                   
+
+                    <div class="row no-gutters">
+                       <a target="_blank" href="{% url 'post-detail' post.id %}"> <div class="" style="border-radius: 50% !important; height: 100px; width: 100px; padding: 9px; padding-left: 15px;">
+                            {% if post.image %}
+                            <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% else %}
+                            <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% endif %}                        </div></a>
+                        <div class="col-8">
+                            <div class="card-body" style="height: 100%;">
+                                <p class="blockquote text_color m-0 mb-1"><span style="color: black;">#{{ post.category.title }}</span></p>
+                                <h2 style="font-weight: 700;">{{ post.title }}</h2>
+                                <div  style="display: flex;
+                                justify-content: space-between;
+                                position: absolute;
+                                width: 100%;
+                                height: 13px;
+                                margin-top: -2px;">
+
+<div class="row no-gutters p-2">
+    <div class="col-6 text-center px-3">
+        <a style="margin-right: 17px;" href = "{% url 'update' post.id %}" class="btn btn-lg btn-block btn-success text-white px-5" onclick = "showCabinetBook()">
+            Düzəlt</a>
+    </div>
+    <div class="col-6 text-center px-3">
+        <div class="btn btn-lg btn-block btn-danger px-5">
+        <a style="text-decoration: none; color: white;" href="{% url 'delete' post.id %}">Sil</a>   
+        </div>
+    </div>
+</div>
+                                    
+                                        <!-- <img onclick="showCabinetBook()" src="{% static 'Icons/settings.svg' %}" alt="" class="icons-style m-0 mr-2 cursor-pointer" style = "width: 1.8rem;" onclick = "showCabinetBook()"> -->
+                                       
+                                    
+                                    
+                                    <!-- <div class="col-6 justify-content-end d-flex align-items-center pt-3" style="padding-right: 0 !important; padding-top: 5px !important;">
+                                        <span style="font-size: 15px; float: right;">{{ post.like }}</span>
+                                        <img src="{% static 'Icons/favorite_border.svg' %}" alt="" class="mr-2 cursor-pointer" style = "width: 2.2rem" onclick = "changeFavorite(this)">
+                                        
+                                        
+                                    </div> -->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <!-- <div class="cabinet-book-dropdown" style="z-index: 100000;">
+                    <img src="{% static 'Icons/close.svg' %}" alt="" class = "close-cabinet-dropdown cursor-pointer position-absolute animation-close-button" onclick = "showCabinetBook()">
+                    <div class="book-dropdown-bg" onclick = "showCabinetBook()"></div>
+                    
+                    <div class="card mb-3 border-0 shadow" style="max-width: 40rem;">
+                        <div class="row no-gutters">
+                            <div class="col-4 p-4">
+                            {% if post.image %}
+                            <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% else %}
+                            <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% endif %} 
+                            </div>
+                            <div class="col-8">
+                                <div class="card-body">
+                                    <p class="blockquote text-danger m-0 mb-1">{{ post.category }}</p>
+                                    <p class="blockquote-footer text-muted font-italic m-0">Adı:</p>
+                                    <p class = "h5">{{ post.title }}</p>
+                                    
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row no-gutters p-2">
+                            <div class="col-6 text-center px-3">
+                                <a href = "{% url 'update' post.id %}" class="btn btn-lg btn-block btn-success text-white px-5" onclick = "showCabinetBook()">
+                                    Düzəlt</a>
+                            </div>
+                            <div class="col-6 text-center px-3">
+                                <div class="btn btn-lg btn-block btn-danger px-5">
+                                <a style="text-decoration: none; color: white;" href="{% url 'delete' post.id %}">Sil</a>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div> -->
+          
+            {% endfor %}
+                
+            </div>
+         
+        </section>
+
+
+    </div>
+
+
+
+    <!-- <section class="footer text-center p-5" style = "background: var(--secondColor);">
+
+        <div class="d-flex align-items-center w-100 justify-content-center">
+            <img src="../Icons/copyright.svg" alt="" class = "pr-2" style = "width: 2rem;">
+            <span class="h5 text-white m-0">2020 BuyBook - müəllif hüquqları qorunur.</span>
+        </div>
+
+        <div class="text-center">
+            <a href="#" class = "sosial-media-icon"><img src="../Icons/gmail.png" alt=""></a>
+            <a href="#" class = "sosial-media-icon"><img src="../Icons/facebook.png" alt=""></a>
+            <a href="#" class = "sosial-media-icon"><img src="../Icons/twitter.png" alt=""></a>
+            <a href="#" class = "sosial-media-icon"><img src="../Icons/instagram.png" alt=""></a>
+        </div>
+
+    </section> -->
+    
+    
+    
+
+
+    
+   <script>
+       // seting iconuna click zamani
+
+// function showCabinetBook(){
+//     let cabinetBookDropdown = document.querySelector(".cabinet-book-dropdown");
+//     cabinetBookDropdown.classList.toggle("cabinet-book-dropdown-active");
+// }
+
+
+// // pen e click zamani ad soyad yazma aktiv olmasi
+
+// function falseDisabled(e){
+//     e.parentElement.children[0].disabled = false;
+//     e.parentElement.children[0].focus();
+//     var val = e.parentElement.children[0].value; //store the value of the element
+//     e.parentElement.children[0].value = ''; //clear the value of the element
+//     e.parentElement.children[0].value = val;
+//     e.parentElement.children[2].style.display = "block";
+// }
+
+// function trueDisabled(e){
+//     e.parentElement.children[0].disabled = true;
+//     e.parentElement.children[2].style.display = "none";
+// }
+//    </script>
+    
+    <div class="align-items-center justify-content-center cursor-pointer bg-danger p-3 rounded-lg shadow go-to-back" onclick = " goToBack()">
+        <img src="{% static 'Icons/up-arrow.svg' %}" alt="" class = "icons-style">
+    </div>
+
+    {% endblock %}
+
+   
+

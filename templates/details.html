@@ -1,0 +1,272 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block menu %}
+
+<style>
+    .search {
+        display: none !important;
+
+    }
+    .social_all{
+        display: none !important;
+    }
+    
+    .green_color{
+        background-color: #8293fd;
+    }
+    .red_color{
+        background-color: #8293fd;
+    }
+</style>
+
+        <main role="main" class="w-100" style="position: relative; top: 10px;">
+           
+            <section class="details_section w-100">
+                <div class="details_container d-flex w-100">
+
+                    <div class="details_left">
+                        <div class="details_image">
+                            {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="details_image" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+                            {% else %}
+                            <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% endif %} 
+                        </div>
+                    </div>
+
+                    <div class="details_right">
+                        <b><h3 class="details_title">
+                            {{ post.title }}
+                        </h3></b>
+                        <div class="left_buttons_container d-flex ">
+
+                           
+                            <a href="{{ post.link }}"><button class="my_btn blue_color" >Qoşul</button></a>
+
+
+
+                            {% if request.user.is_authenticated %}
+                            <button class="my_btn green_color" onclick="sharefuncsecn(); yourfunc();" idim="{{ post.id }}" username="{{ request.user.username }}" id="buton">Paylaş</button>
+
+                            <p style="display: none;"  id="{{ request.user.username }}"></p>
+                            {% else %}
+                            <button class="my_btn green_color" onclick="sharefunc(); yourfunc();" >Paylaş</button>
+                            {% endif %}
+                            
+                            <a href="http://Wa.me/994508316695" onclick="myFunction()"><button  class="my_btn red_color " >Link Problemi</button></a>
+                        </div>
+                        {% if post.description is not none %}
+                        <div class="details_excerpt p-3 d-flex ">
+                            <p class="detials_text" style="text-align: left;" >
+                                
+                                {{post.description}}
+                            </p>
+                           
+                        </div>
+                        {% else %}
+                        <div class="details_excerpt p-3 d-flex ">
+                            <p class="detials_text" style="text-align: center;" >
+                                
+                                Təsvir yoxdur
+                            </p>
+                           
+                        </div>
+                        {% endif %}
+
+
+                        <div class="details_buttons d-flex justify-content-between ">
+
+                            
+                        <form  method="post" style="display: flex;">
+                                {% csrf_token %}
+                            <!-- <button type="submit" name="post_id" value = "{{ post.id }}" class="btn btn-primary btn-sm" style="font-size: 15px; width: 50px;border-radius: 8px;">
+                                Like
+                            </button> -->
+                            <i style="font-size:24px" class="fa">&#xf06e;</i>
+
+                             <p style="font-size: 15px; margin: 5px; margin-top: 1px;">{{view_count}} </p>  
+                        </form>
+                           
+                        {% if request.user.is_authenticated %}
+
+                            <div class="right_buttons">
+                                <a href="{% url 'profile' request.user %}">
+                                    <button  class="my_btn red_color " style="color: black; background-color: #F5D20A; font-size: 12px;" >Premium et</button>
+                                </a>
+
+                                <!-- <a href="#"><button  class="my_btn red_color " style="color: black; background-color: #F5D20A; font-size: 12px;" >Premium et</button></a> -->
+
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <input style="visibility: hidden;" class="" name="linkfull" id="" value="www.linker.az{{ request.get_full_path }}">
+             
+            
+        </main>
+
+        <section id="most-loaded-books" style="margin-top: 50px;">
+           
+
+            <div class="books d-flex justify-content-around flex-wrap posts" style="margin: -28px;">
+                {% for post in related %}
+                <div class="group_details" style="color: black; text-decoration: none; height: 290px; ">
+
+                    <div class="card mb-5 border-5 shadow" style="max-width: 36rem; border-radius: 15px; height: 290px; width: 200px;">
+                    
+                    {% if post.preminium == True %}
+                    <div class="premium">Premium  
+                    </div>
+                    {% endif %}
+                        <span class="open_elan_menu d-inline-block iconmenu" style="position: absolute;  right: 20px; top: 14px; height: 28px; width: 80px; z-index: 1;">
+                          <i class="fas fa-ellipsis-v" ></i>
+                        </span>
+
+                    <div class="row no-gutters">
+                        <a   href="{% url 'post-detail' post.id %}" style="color: black; text-decoration: none; height: 105px;">
+
+                            
+                    <div class="card-img rounded" style="border-radius: 50% !important; height: 120px; width: 120px; padding: 10px; padding-left: 15px; margin-left: 30%; margin-top: 15px;">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% else %}
+                    <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% endif %}
+                    </div>
+
+
+                    <div class="col-8">
+                    <div class="card-body" style="height: 100%; ">
+
+                        <a href="{% url 'post-detail' post.id %}" style="text-decoration: none;">
+                            <div class="center" style="width: 120px;
+                            text-align: center;
+                            margin-top: 26px;
+                            margin-left: 25px;">
+                            <h2 style="font-weight: 600; color: black;">{{ post.title }}</h2>
+        
+                            <p class="blockquote text_color m-0 mb-1" style="width: 120px;"><span style="color: grey;">{{ post.category }}</span></p>
+                            </div>
+                        </a>
+
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="sosial_network_icon" >
+                            {% if post.linktype == 'Whatsapp' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Telegram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/telegram-app--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Instagram' %}
+                    <div class="socialmediaicn" style="position: absolute; right:22px; top: 80px; height: 35px; width: 35px;"><img src="{% static 'Icons/instalogo.png' %}" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'TikTok' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/material/50/000000/tiktok.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Facebook' %}                                                                       
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Youtube' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="{% static 'Icons/youtubeicon.png' %}" width="100%" height="100%"/></div>
+
+                    {% endif %}
+                            <!-- <a href=""><i class="fab fa-whatsapp" style="font-size: 14px;color: green;"></i></a> -->
+                        </span>
+
+                       
+
+                        <ul class="elan_menu_list  flex-column " style="    top: -145px;left: 55px;position: relative; height: 95px; border-radius: 5px;">
+
+                            <li class="elan_menu_list_item" >
+                               <a href="{% url 'post-detail' post.id %}" >Ətraflı</a>
+                            </li>
+
+                            <li class="elan_menu_list_item" >
+                                <a  onclick="sharefuncsecn();yourfunc();" idim="{{ post.id }}" username="{{ request.user.username }}" id="buton">Paylaş </a>
+                                
+
+
+
+                            
+                            </li>
+
+                            <li class="elan_menu_list_item" style="z-index: 10;border-radius: 5px;
+                            ">
+                               <a href="http://Wa.me/994508316695" onclick="myFunction()"> Bildir</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="row" style="display: flex; justify-content: space-between; ">
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                </div>
+                {% endfor %}
+                </a>
+
+            </div>
+            
+        </section>
+
+           <!-- reklam -->
+        {% for reklam in banners %}
+            {% if reklam.order == 1 %}
+           <a href="{{ reklam.link }}">
+             <div class="w-100 shadow p-5 my-4">
+                <img src="{{ reklam.img.url }}" alt="">
+            </div>
+        </a>
+            {% endif %}
+        {% endfor %}
+        
+
+       
+
+    </div> 
+
+
+
+
+         <script>
+            function sharefunc(){
+
+                const a = document.getElementsByName("linkfull")[0].value;
+                console.log(a);
+                navigator.clipboard.writeText(a);
+            };
+
+            const element = document.querySelector('#buton');
+
+            function sharefuncsecn(){
+                let idim = element.getAttribute("idim");
+                let username = element.getAttribute('username');
+                
+                
+
+                const linkimiz = 'www.linker.az/post/' + username + '/' + idim;
+                navigator.clipboard.writeText(linkimiz);
+            }
+        </script>
+
+        <script>
+            function myFunction() {
+              alert("Bildirildi!");
+            }
+            </script>
+           <script>
+               function yourfunc(){
+                alert("Link kopyalandı");
+
+               }
+           </script>
+        {% endblock %}

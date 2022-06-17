@@ -1,0 +1,316 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% block menu %}
+
+<section id="categories" class = "mb-5">
+
+    <div class="row mt-5 d-flex justify-content-around align-items-center">
+
+        <div class="col-1 m-0 p-0 d-sm-flex d-none align-items-center justify-content-center">
+            <img src="{% static 'Icons/keyboard_arrow_left-24px.svg' %}" alt="" class = "icons-style cursor-pointer" onclick = "categoriyaScrollLeft()"> 
+        </div>
+
+        <div class="col-12 col-sm-10 d-flex m-0 p-0 align-items-center categories">
+            <ul class = "list-unstyled d-flex m-0 w-100 h3 categories-list">
+                <li>
+                    <a class="top50" id="top50" href="{% url 'top50' %}" style="text-decoration: none; padding: 5px; font-size: 15px; background-color: #6679FB; color: white;border-radius: 5px; ">Top 50</a>
+                </li>
+                {% for cat in categories %}
+               
+                    <li><a href="/?category={{ cat.title }}" style="text-decoration: none; color: black;">{{ cat.title }}</a></li>
+
+                {% endfor %}
+                
+           
+                
+            </ul>
+        </div>
+
+        <div class="col-1 m-0 p-0 d-sm-flex d-none align-items-center justify-content-center">
+            <img src="{% static 'Icons/keyboard_arrow_right-24px.svg' %}" alt="" class = "icons-style cursor-pointer" onclick = "categoriyaScrollRight()"> 
+        </div>
+
+    </div>
+    
+</section>
+
+
+<section class="campaign">
+       {% for reklam in reklam %}
+       <a href="{{reklam.link}}"> <img src="{{ reklam.img.url }}" alt="" class = "w-100"></a>
+        {% endfor %}
+</section>
+
+        <section id="most-loaded-books">
+           
+            <div class="row border border-left-0 border-right-0 border-top-0 pb-3 mb-5" style="border-color: var(--thirdColor);">
+                <div class="col-12 d-flex align-items-end">
+                    <img src="{% static 'Icons/icon2.png' %}" alt="" class="icons-style ml-2">
+                    <h3 class="section-title font-weight-bolder ml-3 text_color" style="margin-top: 10px; color: rgb(102, 121, 251) !important;">Premium elanlar</h3>
+                </div>
+            </div>
+
+            <div class="books d-flex justify-content-around flex-wrap posts">
+
+                 {% for post in premium %}
+                 <div class="group_details" style="color: black; text-decoration: none; height: 105px;">
+
+                    <div class="card mb-5 border-5 shadow" style="max-width: 36rem; max-height: 105px !important; border-radius: 15px;">
+                    
+                    {% if post.preminium == True %}
+
+                    <div class="premium">Premium</div>
+                    {% endif %}
+                        <span class="open_elan_menu d-inline-block iconmenu" style="position: absolute;  right: 20px; top: 10px; height: 28px; width: 28px; z-index: 1;">
+                          <i class="fas fa-ellipsis-v" ></i>
+                        </span>
+
+                    <div class="row no-gutters">
+
+                        <a   href="{% url 'post-detail' post.id %}" style="color: black; text-decoration: none; height: 105px;">
+
+                    <div class="" style="border-radius: 50% !important; height: 100px; width: 100px; padding: 9px; padding-left: 15px;">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% else %}
+                    <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% endif %}
+                    </div>
+
+
+                    <div class="col-8">
+                    <div class="card-body" style="height: 100%;">
+
+                        <p class="blockquote text_color m-0 mb-1"><span style="color: black;">#{{ post.category }}</span></p>
+
+                    <h2 style="font-weight: 700;">{{ post.title }}</h2>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="sosial_network_icon" >
+                            {% if post.linktype == 'Whatsapp' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Telegram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/telegram-app--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Instagram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="{% static 'Icons/instalogo.png' %}" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'TikTok' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/material/50/000000/tiktok.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Facebook' %}                                                                       
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Youtube' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="{% static 'Icons/youtubeicon.png' %}" width="100%" height="100%"/></div>
+
+                    {% endif %}
+                            <!-- <a href=""><i class="fab fa-whatsapp" style="font-size: 14px;color: green;"></i></a> -->
+                        </span>
+
+                        <form action="{% url 'like_post' post.id %}" method="post" style="display: flex;">
+                            {% csrf_token %}
+                        <button type="submit" name="post_id" value = "{{ post.id }}" class="btn btn-primary btn-sm" style="font-size: 10px;width: 35px;border-radius: 8px;height: 25px;margin: 3px;background-color: #6679FB;">
+                            Like
+                        </button>  <p style="font-size: 15px; margin: 6px;">{{post.like_count}} </p> 
+                        </form>
+
+                        <ul class="elan_menu_list  flex-column ">
+
+                            <li class="elan_menu_list_item" >
+                               <a href="{% url 'post-detail' post.id %}" >Ətraflı</a>
+                            </li>
+
+                            <li class="elan_menu_list_item" >
+                               <a href="http://Wa.me/994508316695">Reklam et </a>
+                            </li>
+
+                            <li class="elan_menu_list_item" style="z-index: 10;
+                            border: 1px solid;
+                            border-top: none;">
+                               <a href="http://Wa.me/994508316695"> Bildir</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="row" style="display: flex; justify-content: space-between; ">
+                    </div>
+
+                    </div>
+                </a>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+                
+            </div>
+        </section>
+
+
+        <section id="most-loaded-books">
+           
+            <div class="row border border-left-0 border-right-0 border-top-0 pb-3 mb-5" style = 'border-color: var(--thirdColor);'>
+                <div class="col-12 d-flex align-items-end">
+                    <img src="{% static 'Icons/icon1.png' %}" alt="" class="icons-style ml-2">
+                    <h3 class="section-title font-weight-bolder ml-3 text_color" style="margin-top: 10px; color: rgb(102, 121, 251) !important;">Ən son yüklənənlər</h3>
+                </div>
+            </div>
+
+            <div class="books d-flex justify-content-around flex-wrap posts">
+
+                 {% for post in post %}
+                <a  target="_blank" href="{% url 'post-detail' post.id %}" style="color: black; text-decoration: none; height: 105px;">
+                <div class="group_details" style="color: black; text-decoration: none; height: 105px;">
+
+                    <div class="card mb-5 border-5 shadow" style="max-width: 36rem; max-height: 105px !important; border-radius: 15px;">
+                    
+                    {% if post.preminium == True %}
+
+                    <div class="premium">Premium</div>
+                    {% endif %}
+                        <span class="open_elan_menu d-inline-block iconmenu" style="position: absolute;  right: 20px; top: 10px; height: 28px; width: 28px; z-index: 1;">
+                          <i class="fas fa-ellipsis-v" ></i>
+                        </span>
+
+                    <div class="row no-gutters">
+
+
+                    <div class="" style="border-radius: 50% !important; height: 100px; width: 100px; padding: 9px; padding-left: 15px;">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% else %}
+                    <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% endif %}
+                    </div>
+
+
+                    <div class="col-8">
+                    <div class="card-body" style="height: 100%;">
+
+                        <p class="blockquote text_color m-0 mb-1"><span style="color: black;">#{{ post.category }}</span></p>
+
+                    <h2 style="font-weight: 700;">{{ post.title }}</h2>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="sosial_network_icon" >
+                            {% if post.linktype == 'Whatsapp' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Telegram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/telegram-app--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Instagram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="{% static 'Icons/instalogo.png' %}" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'TikTok' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/material/50/000000/tiktok.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Facebook' %}                                                                       
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Youtube' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 68px; top: 1px; height: 28px; width: 28px;"><img src="{% static 'Icons/youtubeicon.png' %}" width="100%" height="100%"/></div>
+
+                    {% endif %}
+                            <!-- <a href=""><i class="fab fa-whatsapp" style="font-size: 14px;color: green;"></i></a> -->
+                        </span>
+
+                        <form action="{% url 'like_post' post.id %}" method="post" style="display: flex;">
+                            {% csrf_token %}
+                            <button type="submit" name="post_id" value = "{{ post.id }}" class="btn btn-primary btn-sm" style="font-size: 10px;width: 35px;border-radius: 8px;height: 25px;margin: 3px;background-color: #6679FB;">
+                                Like
+                            </button>  <p style="font-size: 15px; margin: 6px;">{{post.like_count}} </p> 
+                        </form>
+
+                        <ul class="elan_menu_list  flex-column ">
+
+                            <li class="elan_menu_list_item" >
+                               <a href="">Paylaş</a>
+                            </li>
+
+                            <li class="elan_menu_list_item" >
+                               <a href="">Reklam et </a>
+                            </li>
+
+                            <li class="elan_menu_list_item" >
+                               <a href=""> Bildir</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="row" style="display: flex; justify-content: space-between; ">
+                    <div></div>
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+                </div>
+                </a>
+                {% endfor %}
+
+                
+            </div>
+        </section>
+
+    </div>
+    
+    <script>$('.open_elan_menu').on('click',function(){
+              
+        $(this).parents('.group_details').find('.elan_menu_list').css({'display':'flex'})
+    });
+
+    $('*').on('click',function(e){
+        if(!$(e.target).is('.elan_menu_list') && !$(e.target).is('.elan_menu_list *') && 
+        !$(e.target).is('.open_elan_menu') && !$(e.target).is('.open_elan_menu *') ){
+            $('.elan_menu_list').css({'display':'none'});
+        } 
+    });</script>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content" >
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="font-size: 18px;">
+                Elanınızı daha çox insana göstərmək istəyirsinizmi? 
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" >
+                  <a href="https://wa.me/p/4806080209476024/994508316695" target="_blank" style="color: white; text-decoration: none; font-size: 16px;">Ətraflı</a>
+              </button>
+              <!-- <button type="button" class="btn btn-primary">
+                  <a href="" style="color: white; text-decoration: none; font-size: 16px;">Daha sonra</a>
+              </button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+            window.onload = function () {
+            OpenBootstrapPopup();
+            
+        };
+        function OpenBootstrapPopup() {
+            $("#myModal").modal("show");
+        }
+
+    
+    </script> -->
+
+   
+   
+    {% endblock  %}

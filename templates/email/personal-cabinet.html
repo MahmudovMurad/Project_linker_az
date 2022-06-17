@@ -1,0 +1,983 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block menu %}
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+<link rel="stylesheet" href="{% static 'Scss/personal-cabinet.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'Scss/animation.css' %}">
+<link rel="stylesheet" href="{% static 'Css/coins.css' %}">
+    <style>
+        .header{
+            height: 65px !important;
+        }
+        .search{
+            visibility: hidden;
+        }
+        .social_all{
+            display: none !important;
+        }
+        .add-book-btn{
+            display: none !important;
+        }
+    </style>
+
+    <div class="personal_cbn_sc" id="personal_cbn_sc">
+        
+        
+        
+        <div id="panel" class="div1">
+               <div class="div2">
+                   <img id="img1" src="{% static 'Icons/coinsvg.svg' %}" alt="">
+               </div>
+            <div class="div3">
+           Coin'ləri topla, ödənişsiz<br>
+           premium reklam qazan !
+       </div>
+        <div class="div4">
+               <button class="but1" onclick="myFunction()" type="button">Ətraflı öyrən</button>
+    
+        </div>
+                   
+    
+       <div class="div55">
+           <button class="but22" onclick="myFunction1()" type="button">Daha sonra</button>
+       </div>
+    
+        </div>
+
+        <div id="panel2" class="adivOne">
+       
+            <div class="adiva">
+                <div id="atxt4"><strong>Linker Coin Sistemi</strong></div>
+               
+                <div id="atxt2">1. Saytdakı elanlara daxil olun.
+                    <div id="atxt6" style="font-size: 15px;">
+                           2. Məlumat səhifəsində "Paylaş" butonuna  &nbsp&nbsp&nbsp&nbspklikləyərək elanın linkini kopyalayın.
+                    </div> 
+     
+                       </div>
+                <div id="atxt3">
+                    3. Əldə etdiyiniz linki öz kanal/qruplarınızda &nbsp&nbsp&nbsp&nbsppaylaşın. Linkdən keçid edən hər bir şəxs &nbsp&nbsp&nbsp&nbspadi elanlar üçün 1 coin, premium elanlar &nbsp&nbsp&nbsp&nbspüçün isə 2 coin 
+                    olaraq hesablanır.
+                     Coin  &nbsp&nbsp&nbsp&nbsphesabınızı şəxsi &nbsp&nbsp&nbsp&nbspkabinetinizdə görə &nbsp&nbsp&nbsp&nbspbilərsiniz.
+                   </div> 
+                 <div id="atxt5">
+                     Topladığınız coin'lər ilə saytda premium reklam əldə edə bilərsiniz
+                   </div>  
+     
+                   
+          
+     </div>
+        
+                   
+     
+       <div class="adiv5">
+           <button class="abut2" type="button" onclick="myFunction1()">Anladım</button>
+       </div>
+     
+       <div class="adiv6">
+        <button class="abut3" type="button" onclick="window.location.href='https://wa.me/994508316695';">Operator yardımı</button>
+           </div>
+     
+        </div>
+          
+    
+    </div>
+
+
+<script>
+        function myFunction() {
+          document.getElementById("panel").style.display = "none";
+          document.getElementById("panel2").style.display = "block";
+        }
+
+        function myFunction1() {
+          document.getElementById("personal_cbn_sc").style.display = "none";
+        }
+ </script>
+
+    
+
+        <section id="personal-cabinet">
+            <div class = "d-flex align-items-center ml-0 ml-md-4 mt-4 mt-md-0 my-5 justify-content-center">
+                
+                <!-- <img src="../Icons/edit.svg" alt="" class = "icons-style ml-4 cursor-pointer" onclick = "falseDisabled(this)"> -->
+                <div class="btn btn-outline-danger ml-2 p-2 px-4 done-input-change" onclick = "trueDisabled(this)">Bitdi</div>
+            </div>
+
+       
+           
+                
+            </div>
+
+
+
+            <!-- Coins hesabi -->
+            <div class="coinst_system">
+                <div class="first_coins_part">
+                    <div class="coins_ttl">
+                        Coin Hesabınız
+                    </div>
+                    <div class="all_coins" style="display: flex;">
+                    <div class="coins_value">{{ user_id }}</div><sub class="coins_sub">LNC</sub>
+                </div>
+                </div>
+                <div class="second_coins_part">
+                    <div style="cursor: pointer;" class="coins_help" id="coins_help" onclick="myFunction2()">
+                        Yardım
+                    </div>
+                    <div class="coins_noti">
+                        <div class="coins_noti_icon" style="display: flex; align-items: center;">
+                                <img style="object-fit: contain;" width="18px" src="{% static 'Icons/notification.png' %}" alt="">
+                        </div>
+                        <div class="coins_noti_txt">
+                            Coin toplamadan sizə ən uyğun 
+                            məbləğdə premium reklam əldə 
+                            edə bilərsiniz
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 d-flex align-items-end">
+                    
+                <h3 class="section-title font-weight-bolder ml-3 text-danger" style="color: #6679fb !important;">Elanlarım</h3>
+            </div>
+            <script>
+                        function myFunction2() {
+                        document.getElementById("personal_cbn_sc").style.display = "flex";
+                        }
+ 
+            </script>
+
+
+
+
+            <div class="books d-flex justify-content-around flex-wrap">
+                
+                {% for post in post_list %}
+                
+                <div class="card mb-5 border-5 shadow" style="max-width: 36rem; max-height: 105px !important; border-radius: 15px;">
+                    {% if post.preminium == True %}
+                    <div class="premium">Premium</div>
+                    {% endif %}
+                   
+
+                    <div class="row no-gutters">
+                        <div class="" style="border-radius: 50% !important; height: 100px; width: 100px; padding: 9px; padding-left: 15px;">
+                            {% if post.image %}
+                            <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% else %}
+                            <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                            {% endif %}                        </div>
+                        <div class="col-8">
+                            <div class="card-body" style="height: 100%;">
+                                <p class="blockquote text_color m-0 mb-1"><span style="color: black;">#{{ post.category.title }}</span></p>
+                                <h2 style="font-weight: 700;">{{ post.title }}</h2>
+                                <div  style="display: flex;
+                                justify-content: space-between;
+                                position: absolute;
+                                width: 100%;
+                                height: 13px;
+                                margin-top: -2px;">
+
+                                <div class="row no-gutters p-2">
+                                    <div class="col-6 text-center px-3">
+                                        <a style="margin-right: 17px;" href = "{% url 'update' post.id %}" class="btn btn-lg btn-block btn-success text-white px-5" onclick = "showCabinetBook()">
+                                            Düzəlt</a>
+                                    </div>
+                                    <div class="col-6 text-center px-3">
+                                        <div class="btn btn-lg btn-block btn-danger px-5">
+                                        <a postid="{{ post.id }}" image="{{ post.image.url }}" posttitle="{{ post.title }}" class="premium_show" >Premium</a>
+                                        <a class="post_delete_btn" delete-src="{% url 'delete' post.id %}" id="premium_show{{ post.id }}" style="text-decoration: none; color: white;">Sil</a> 
+
+                                        </div>
+                                    </div>
+                                </div>
+                                                                    
+                                 
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+          
+            {% endfor %}
+                
+            </div>
+         
+        </section>
+
+
+    </div>
+<link rel="stylesheet" href="{% static 'Css/slider.css' %}">
+
+
+{% if endalert == 2 or endalert == 1 or endalert == 3 %}
+<!-- Odenis ugurla tamalandiqda -->
+<div id="check_alert_bg" class="slider_background" style="display: block;">
+    <div class="check_alert">
+
+        {% if endalert == 2 %}
+        <div class="check_image">
+            <img src="{% static 'Icons/check.png' %}" width="150px" height="150px" alt="">
+        </div>
+        {% elif endalert == 1 %}
+        <div class="check_image">
+            <img src="{% static 'Icons/delete.png' %}" width="150px" height="150px" alt="">
+        </div>
+        {% elif endalert == 3 %}
+        <div class="check_image">
+            <img src="{% static 'Icons/delete.png' %}" width="150px" height="150px" alt="">
+        </div>
+        {% endif %}
+
+        {% if endalert == 2 %}
+        <div class="check_alert_txt">
+        Ödənişiniz uğurla başa çatdı !
+        </div>
+        {% elif endalert == 1 %}
+        <div class="check_alert_txt">
+            Hesabınızda kifayət qədər coin yoxdur.
+        </div>
+        {% elif endalert == 3 %}
+        <div class="check_alert_txt">
+            Bu link artıq premiumdur.
+        </div>
+        {% endif %}
+
+        <div class="check_close_pay">
+            <a class="check_close" style="color: white;">Bağla</a>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    $('.check_close').click(function(){
+
+        $('#check_alert_bg').css('display', 'none');
+    });
+</script>
+
+
+{% endif %}
+
+
+<div class="slider_background" >
+    <div class="coins_slider">
+        
+        <div class="premium_exit">X</div>
+     
+
+    <div class="coins_slider_body">
+        
+        
+  
+      
+        <div id="slider">
+
+            <form action="{% url 'profile' request.user %}">
+          
+          
+          <ul>
+
+            
+            
+            <li>
+                <div id="coins_slider_1" class="coins_slider_child">
+                    <h3 class="coins_slider_title">
+                        Reklam müddətini seçin
+                    </h3>
+                    <div class="coins_slider_amount">
+                       <span id="rangeValue" >{{ postmoney.azn1 }}</span>AZN - <span id="rangecoins">{{ postmoney.coin1 }}</span> Coin
+                        
+                    </div>
+                    
+             
+                    
+                    
+                    <div class="coins_slider_alert">
+                        <div style="height: 25px;">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 0 24 24" width="26px" fill="red"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27L15.73 3zM19 14.9L14.9 19H9.1L5 14.9V9.1L9.1 5h5.8L19 9.1v5.8z"/><circle cx="12" cy="16" r="1"/><path d="M11 7h2v7h-2z"/></svg>
+                        </div>
+                    <div>
+                        Daha yaxşı nəticə üçün daha <br>
+                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspuzun müddət seçin
+                    </div>
+
+                    </div>
+                    
+                    <div class="coins_slider_progressbar">
+                        <div style="font-size: 15px;"><span id="rangeday">1</span> <span>gün</span></div>
+                        <input type="range" style="width: 300px !important; opacity: 1 !important; background: linear-gradient(to right, #8189c2 0%, #8189c2 0%, #fff 0%, #fff 100%); border: 1px #8189c2 solid; border-radius: 10px;" id="myRange" value="0" max="29">
+
+
+
+                           
+                    </div>
+
+                    <script>
+                        document.getElementById("myRange").oninput = function() {
+                        var value = (this.value-this.min)/(this.max-this.min)*100
+                        this.style.background = 'linear-gradient(to right, #8189c2 0%, #8189c2 ' + value + '%, #fff ' + value + '%, white 100%)'
+                        }
+                    </script>
+
+                    <div class="next_button_slider">
+                        <a class="control_next">Növbəti</a>  
+                    </div>
+                    <div class="slider_linkerads">
+                        <span>Linker</span><span>ADS</span>
+                    </div>
+                </div>
+
+               
+                
+            </li>
+            <li >
+                
+                <div id="coins_slider_1" class="coins_slider_child">
+                    <span class="control_prev">
+                        <img src="{% static 'Icons/sliderback.png' %}" width="15" height="15" alt="">
+                            </span>
+                    <h3 class="coins_slider_title">
+                      
+                        
+                        Reklamı gözdən keçirin
+                    </h3>
+                    <div class="coins_cnl_image">
+                        <img width="100px" height="100px" style="object-fit: cover; border-radius: 50%;" class="coins_cnl_image_src" src="" alt="">
+                    </div>
+                    <div class="coins_cnl_title">
+                    
+                    </div>
+             
+
+                    <div class="coins_ads_contex">
+                        <div class="coins_ads_day">
+                           <span style="font-weight: bold;">Reklam müddəti:</span> <span id="coins_ads_day">5</span><span> gün</span>
+                        </div>
+                        <div class="coins_ads_pay">
+                            <span style="font-weight: bold;">Məbləğ:</span> <span id="coins_ads_pay">1</span><span> AZN</span>
+                            (<span id="coins_ads_pay_coin">100</span><span> Coin)</span>
+                         </div>
+                    </div>
+                    
+                
+                    <input name="rangvaluequry" type="text" id="rangvaluequry" style="display: none;" value="1">
+                    <input name="rangecoinsquery" id="rangecoinsquery" style="display: none;" value="100">
+                    <input type="text" style="display: none;" id="useridim" name="user_id" value="0">
+
+                    <div class="next_button_slider">
+                        <a href="https://api.whatsapp.com/send?phone=994508316695&text=Salam,%20elan%C4%B1m%C4%B1%20premium%20etm%C9%99k%20ist%C9%99yir%C9%99m%20" class="paywithmanat">Pul ilə ödə</a>
+                        <input type="submit" class="paywithcoin" value="Coin ilə ödə"> 
+                        
+                    </div>
+                </div>
+            </li>
+            
+          </ul>  
+        </form>
+          
+        </div>
+        
+        
+
+
+   
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="post_delete_alert" style="display: none;">
+    <div class="alert_delete_bg">
+        <div class="alert_alert">Linkiniz silinəcək !</div>
+        <div class="alert_buttons">
+            <a class="alert_exit">Ləğv et</a>
+            <a href="" class="alert_delete_btn">Sil</a>
+        </div>
+
+    </div>
+</div>
+    
+
+
+<script>
+    $('.post_delete_btn').click(function(){
+        deletelink = $(this).attr('delete-src');
+        console.log(deletelink);
+        $('.post_delete_alert').css('display', 'flex');
+        $('.alert_delete_btn').attr('href', deletelink);
+
+    });
+
+    $('.alert_exit').click(function(){
+        $('.post_delete_alert').css('display', 'none');
+    })
+
+</script>
+    
+<input class="valuesinput" style="display:none;" type="text" azn1="{{ postmoney.azn1 }}" coin1="{{ postmoney.coin1 }}" azn2="{{ postmoney.azn2 }}" coin2="{{ postmoney.coin2 }}" azn3="{{ postmoney.azn3 }}" coin3="{{ postmoney.coin3 }}" azn4="{{ postmoney.azn4 }}" coin4="{{ postmoney.coin4 }}" azn5="{{ postmoney.azn5 }}" 
+coin5="{{ postmoney.coin5 }}" azn6="{{ postmoney.azn6 }}" coin6="{{ postmoney.coin6 }}" azn7="{{ postmoney.azn7 }}" coin7="{{ postmoney.coin7 }}" azn8="{{ postmoney.azn8 }}" coin8="{{ postmoney.coin8 }}" azn9="{{ postmoney.azn9 }}" coin9="{{ postmoney.coin9 }}" azn10="{{ postmoney.azn10 }}" coin10="{{ postmoney.coin10 }}" 
+azn11="{{ postmoney.azn11 }}" coin11="{{ postmoney.coin11 }}" azn12="{{ postmoney.azn12 }}" coin12="{{ postmoney.coin12 }}" azn13="{{ postmoney.azn13 }}" coin13="{{ postmoney.coin13 }}"
+azn14="{{ postmoney.azn14 }}" coin14="{{ postmoney.coin14 }}" azn15="{{ postmoney.azn15 }}" coin15="{{ postmoney.coin15 }}" azn16="{{ postmoney.azn16 }}" coin16="{{ postmoney.coin16 }}" azn17="{{ postmoney.azn17 }}" coin17="{{ postmoney.coin17 }}" azn18="{{ postmoney.azn18 }}" coin18="{{ postmoney.coin18 }}"
+coin19="{{ postmoney.coin19 }}" azn19="{{ postmoney.azn19 }}" coin20="{{ postmoney.coin20 }}" azn20="{{ postmoney.azn20 }}" coin21="{{ postmoney.coin21 }}" azn21="{{ postmoney.azn21 }}" coin22="{{ postmoney.coin22 }}" azn22="{{ postmoney.azn22 }}" coin23="{{ postmoney.coin23 }}" azn23="{{ postmoney.azn23 }}" coin24="{{ postmoney.coin24 }}" 
+azn24="{{ postmoney.azn24 }}" coin25="{{ postmoney.coin25 }}" azn25="{{ postmoney.azn25 }}" coin26="{{ postmoney.coin26 }}" azn26="{{ postmoney.azn26 }}" coin27="{{ postmoney.coin27 }}"
+azn27="{{ postmoney.azn27 }}" coin28="{{ postmoney.coin28 }}" azn28="{{ postmoney.azn28 }}" coin29="{{ postmoney.coin29 }}" azn29="{{ postmoney.azn29 }}" coin30="{{ postmoney.coin30 }}" azn30="{{ postmoney.azn30 }}">
+    
+<script>
+
+    $('.premium_exit').click(function(){
+        $('.slider_background').css('display', 'none')
+    });
+
+
+    $('.premium_show').click(function(){
+        post_id = $(this).attr('postid');
+        post_img= $(this).attr('image');
+        post_title = $(this).attr('posttitle');
+
+        $('.coins_cnl_image_src').attr("src", post_img);
+        $('.coins_cnl_title').text(post_title);
+        $('#useridim').val(post_id);
+        console.log(post_id);
+        $('.slider_background').css('display', 'block');
+        
+    });
+    
+
+    azn1 =  $('.valuesinput').attr('azn1');
+    coin1 =  $('.valuesinput').attr('coin1');
+    azn2 =  $('.valuesinput').attr('azn2');
+    coin2 =  $('.valuesinput').attr('coin2');
+    azn3 =  $('.valuesinput').attr('azn3');
+    coin3 =  $('.valuesinput').attr('coin3');
+    azn4 =  $('.valuesinput').attr('azn4');
+    coin4 =  $('.valuesinput').attr('coin4');
+    azn5 =  $('.valuesinput').attr('azn5');
+    coin5 =  $('.valuesinput').attr('coin5');
+    azn6 =  $('.valuesinput').attr('azn6');
+    coin6 =  $('.valuesinput').attr('coin6');
+    azn7 =  $('.valuesinput').attr('azn7');
+    coin7 =  $('.valuesinput').attr('coin7');
+    azn8 =  $('.valuesinput').attr('azn8');
+    coin8 =  $('.valuesinput').attr('coin8');
+    azn9 =  $('.valuesinput').attr('azn9');
+    coin9 =  $('.valuesinput').attr('coin9');
+    azn10 =  $('.valuesinput').attr('azn10');
+    coin10 =  $('.valuesinput').attr('coin10');
+    azn11 =  $('.valuesinput').attr('azn11');
+    coin11 =  $('.valuesinput').attr('coin11');
+    azn12 =  $('.valuesinput').attr('azn12');
+    coin12 =  $('.valuesinput').attr('coin12');
+    azn13 =  $('.valuesinput').attr('azn13');
+    coin13 =  $('.valuesinput').attr('coin13');    
+    azn14 =  $('.valuesinput').attr('azn14');
+    coin14 =  $('.valuesinput').attr('coin14');
+    azn15 =  $('.valuesinput').attr('azn15');
+    coin15 =  $('.valuesinput').attr('coin15');
+    azn16 =  $('.valuesinput').attr('azn16');
+    coin16 =  $('.valuesinput').attr('coin16');
+    azn17 =  $('.valuesinput').attr('azn17');
+    coin17 =  $('.valuesinput').attr('coin17');
+    azn18 =  $('.valuesinput').attr('azn18');
+    coin18 =  $('.valuesinput').attr('coin18');
+    azn19 =  $('.valuesinput').attr('azn19');
+    coin19 =  $('.valuesinput').attr('coin19');
+    azn20 =  $('.valuesinput').attr('azn20');
+    coin20 =  $('.valuesinput').attr('coin20');
+    azn21 =  $('.valuesinput').attr('azn21');
+    coin21 =  $('.valuesinput').attr('coin21');
+    azn22 =  $('.valuesinput').attr('azn22');
+    coin22 =  $('.valuesinput').attr('coin22');
+    azn23 =  $('.valuesinput').attr('azn23');
+    coin23 =  $('.valuesinput').attr('coin23');
+    azn24 =  $('.valuesinput').attr('azn24');
+    coin24 =  $('.valuesinput').attr('coin24');
+    azn25 =  $('.valuesinput').attr('azn25');
+    coin25 =  $('.valuesinput').attr('coin25');
+    azn26 =  $('.valuesinput').attr('azn26');
+    coin26 =  $('.valuesinput').attr('coin26');
+    azn27 =  $('.valuesinput').attr('azn27');
+    coin27 =  $('.valuesinput').attr('coin27');
+    azn28 =  $('.valuesinput').attr('azn28');
+    coin28 =  $('.valuesinput').attr('coin28');
+    azn29 =  $('.valuesinput').attr('azn29');
+    coin29 =  $('.valuesinput').attr('coin29');
+    azn30 =  $('.valuesinput').attr('azn30');
+    coin30 =  $('.valuesinput').attr('coin30');
+
+
+
+
+  
+   
+
+    if ($(window).width() < 960) {
+        $('#myRange').on('touchend touchmove', function(e) {
+
+
+            $('#rangeday').text(parseInt($('#myRange').val()) + 1);
+
+            
+            
+            if($('#myRange').val() == 1){
+            $('#rangecoins').text(coin2);
+            $('#rangeValue').text(azn2);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            }
+            else if($('#myRange').val() == 2){
+            $('#rangecoins').text(coin3);
+            $('#rangeValue').text(azn3);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 3){
+            $('#rangecoins').text(coin4);
+            $('#rangeValue').text(azn4);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 0){
+            $('#rangecoins').text(coin1);
+            $('#rangeValue').text(azn1);
+            $('.coins_slider_alert').css('visibility', 'visible');
+            }  
+
+            else if($('#myRange').val() == 4){
+            $('#rangecoins').text(coin5);
+            $('#rangeValue').text(azn5);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 5){
+            $('#rangecoins').text(coin6);
+            $('#rangeValue').text(azn6);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 6){
+            $('#rangecoins').text(coin7);
+            $('#rangeValue').text(azn7);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 7){
+            $('#rangecoins').text(coin8);
+            $('#rangeValue').text(azn8);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 8){
+            $('#rangecoins').text(coin9);
+            $('#rangeValue').text(azn9);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 9){
+            $('#rangecoins').text(coin10);
+            $('#rangeValue').text(azn10);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 10){
+            $('#rangecoins').text(coin11);
+            $('#rangeValue').text(azn11);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 11){
+            $('#rangecoins').text(coin12);
+            $('#rangeValue').text(azn12);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 12){
+            $('#rangecoins').text(coin13);
+            $('#rangeValue').text(azn13);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 13){
+            $('#rangecoins').text(coin14);
+            $('#rangeValue').text(azn14);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 14){
+            $('#rangecoins').text(coin15);
+            $('#rangeValue').text(azn15);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 15){
+            $('#rangecoins').text(coin16);
+            $('#rangeValue').text(azn16);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 16){
+            $('#rangecoins').text(coin17);
+            $('#rangeValue').text(azn17);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 17){
+            $('#rangecoins').text(coin18);
+            $('#rangeValue').text(azn18);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 18){
+            $('#rangecoins').text(coin19);
+            $('#rangeValue').text(azn19);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 19){
+            $('#rangecoins').text(coin20);
+            $('#rangeValue').text(azn20);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+
+            else if($('#myRange').val() == 20){
+            $('#rangecoins').text(coin21);
+            $('#rangeValue').text(azn21);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 21){
+            $('#rangecoins').text(coin22);
+            $('#rangeValue').text(azn22);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 22){
+            $('#rangecoins').text(coin23);
+            $('#rangeValue').text(azn23);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 23){
+            $('#rangecoins').text(coin24);
+            $('#rangeValue').text(azn24);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 24){
+            $('#rangecoins').text(coin25);
+            $('#rangeValue').text(azn25);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 25){
+            $('#rangecoins').text(coin26);
+            $('#rangeValue').text(azn26);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 26){
+            $('#rangecoins').text(coin27);
+            $('#rangeValue').text(azn27);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 27){
+            $('#rangecoins').text(coin28);
+            $('#rangeValue').text(azn28);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 28){
+            $('#rangecoins').text(coin29);
+            $('#rangeValue').text(azn29);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 29){
+            $('#rangecoins').text(coin30);
+            $('#rangeValue').text(azn30);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            $('#rangecoinsquery').val($('#rangecoins').text());
+            $('#rangvaluequry').val($('#rangeValue').text());
+            $('#coins_ads_day').text($('#rangeValue').text());
+            $('#coins_ads_pay').text($('#rangeValue').text());
+            $('#coins_ads_pay_coin').text($('#rangecoins').text());
+          
+           });
+
+
+};
+
+if ($(window).width() > 960){
+
+    $('#myRange').on('mousmove click' , function(e) {
+        
+        $('#rangeday').text(parseInt($('#myRange').val()) + 1);
+        if($('#myRange').val() == 1){
+            $('#rangecoins').text(coin2);
+            $('#rangeValue').text(azn2);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            }
+            else if($('#myRange').val() == 2){
+            $('#rangecoins').text(coin3);
+            $('#rangeValue').text(azn3);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 3){
+            $('#rangecoins').text(coin4);
+            $('#rangeValue').text(azn4);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 0){
+            $('#rangecoins').text(coin1);
+            $('#rangeValue').text(azn1);
+            $('.coins_slider_alert').css('visibility', 'visible');
+            }  
+
+            else if($('#myRange').val() == 4){
+            $('#rangecoins').text(coin5);
+            $('#rangeValue').text(azn5);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 5){
+            $('#rangecoins').text(coin6);
+            $('#rangeValue').text(azn6);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 6){
+            $('#rangecoins').text(coin7);
+            $('#rangeValue').text(azn7);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 7){
+            $('#rangecoins').text(coin8);
+            $('#rangeValue').text(azn8);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 8){
+            $('#rangecoins').text(coin9);
+            $('#rangeValue').text(azn9);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 9){
+            $('#rangecoins').text(coin10);
+            $('#rangeValue').text(azn10);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 10){
+            $('#rangecoins').text(coin11);
+            $('#rangeValue').text(azn11);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 11){
+            $('#rangecoins').text(coin12);
+            $('#rangeValue').text(azn12);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 12){
+            $('#rangecoins').text(coin13);
+            $('#rangeValue').text(azn13);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 13){
+            $('#rangecoins').text(coin14);
+            $('#rangeValue').text(azn14);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 14){
+            $('#rangecoins').text(coin15);
+            $('#rangeValue').text(azn15);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 15){
+            $('#rangecoins').text(coin16);
+            $('#rangeValue').text(azn16);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 16){
+            $('#rangecoins').text(coin17);
+            $('#rangeValue').text(azn17);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 17){
+            $('#rangecoins').text(coin18);
+            $('#rangeValue').text(azn18);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 18){
+            $('#rangecoins').text(coin19);
+            $('#rangeValue').text(azn19);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 19){
+            $('#rangecoins').text(coin20);
+            $('#rangeValue').text(azn20);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+
+            else if($('#myRange').val() == 20){
+            $('#rangecoins').text(coin21);
+            $('#rangeValue').text(azn21);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 21){
+            $('#rangecoins').text(coin22);
+            $('#rangeValue').text(azn22);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 22){
+            $('#rangecoins').text(coin23);
+            $('#rangeValue').text(azn23);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 23){
+            $('#rangecoins').text(coin24);
+            $('#rangeValue').text(azn24);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 24){
+            $('#rangecoins').text(coin25);
+            $('#rangeValue').text(azn25);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 25){
+            $('#rangecoins').text(coin26);
+            $('#rangeValue').text(azn26);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 26){
+            $('#rangecoins').text(coin27);
+            $('#rangeValue').text(azn27);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 27){
+            $('#rangecoins').text(coin28);
+            $('#rangeValue').text(azn28);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 28){
+            $('#rangecoins').text(coin29);
+            $('#rangeValue').text(azn29);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            else if($('#myRange').val() == 29){
+            $('#rangecoins').text(coin30);
+            $('#rangeValue').text(azn30);
+            $('.coins_slider_alert').css('visibility', 'hidden');
+            } 
+
+            $('#rangecoinsquery').val($('#rangecoins').text());
+            $('#rangvaluequry').val($('#rangeValue').text());
+            $('#coins_ads_day').text($('#rangeValue').text());
+            $('#coins_ads_pay').text($('#rangeValue').text());
+            $('#coins_ads_pay_coin').text($('#rangecoins').text());
+           });
+
+}
+
+    </script>
+
+
+    
+   <script>
+
+jQuery(document).ready(function ($) {
+
+
+  var slideCount = $('#slider ul li').length;
+  var slideWidth = $('#slider ul li').width();
+  var slideHeight = $('#slider ul li').height();
+  var sliderUlWidth = slideCount * slideWidth;
+  
+  $('#slider').css({ width: slideWidth, height: slideHeight });
+  
+  $('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+  
+  $('#slider ul li:last-child').prependTo('#slider ul');
+
+  function moveLeft() {
+      $('#slider ul').animate({
+          left: + slideWidth
+      }, 100, function () {
+          $('#slider ul li:last-child').prependTo('#slider ul');
+          $('#slider ul').css('left', '');
+      });
+  };
+
+  function moveRight() {
+      $('#slider ul').animate({
+          left: - slideWidth
+      }, 100, function () {
+          $('#slider ul li:first-child').appendTo('#slider ul');
+          $('#slider ul').css('left', '');
+      });
+  };
+
+  $('.control_prev').click(function () {
+      moveLeft();
+  });
+
+  $('.control_next').click(function () {
+      moveRight();
+  });
+
+});    
+      
+   </script>
+    
+    <div class="align-items-center justify-content-center cursor-pointer bg-danger p-3 rounded-lg shadow go-to-back" onclick = " goToBack()">
+        <img src="{% static 'Icons/up-arrow.svg' %}" alt="" class = "icons-style">
+    </div>
+
+    {% endblock %}
+
+   
+

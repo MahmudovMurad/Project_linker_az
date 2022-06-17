@@ -1,0 +1,480 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block menu %}
+
+{% if value %}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="number_shadow" id="number_shadow">
+    
+    
+    
+    <div id="panel" class="div1">
+           <div class="div2">
+               <img id="img1" src="{% static 'Icons/coinsvg.svg' %}" alt="">
+           </div>
+        <div class="div3">
+       Coin'ləri topla, ödənişsiz<br>
+       premium reklam qazan !
+   </div>
+    <div class="div4">
+           <button class="but1" onclick="myFunction()" type="button">Ətraflı öyrən</button>
+
+    </div>
+               
+
+   <div class="div55">
+       <button class="but22" onclick="myFunction1()" type="button">Daha sonra</button>
+   </div>
+
+    </div>
+
+    <div id="panel2" class="adivOne">
+   
+        <div class="adiva">
+            <div id="atxt4"><strong>Linker Coin Sistemi</strong></div>
+           
+            <div id="atxt2">1. Saytdakı elanlara daxil olun.
+                <div id="atxt6">
+                       2. Məlumat səhifəsində "Paylaş" butonuna  əyərək &nbsp&nbsp&nbsp&nbspelanın linkini kopyalayın.
+                </div> 
+ 
+                   </div>
+            <div id="atxt3">
+                3. Əldə etdiyiniz linki öz kanal/qruplarınızda &nbsp&nbsp&nbsp&nbsppaylaşın. Linkdən keçid edən hər bir şəxs adi &nbsp&nbsp&nbsp&nbspelanlar üçün 1 coin, premium elanlar üçün isə 2 &nbsp&nbsp&nbsp&nbspcoin 
+                olaraq hesablanır.
+                 Coin hesabınızı şəxsi &nbsp&nbsp&nbsp&nbspkabinetinizdə görə bilərsiniz.
+               </div> 
+             <div id="atxt5">
+                 Topladığınız coin'lər ilə saytda premium reklam əldə edə bilərsiniz
+               </div>  
+ 
+              
+      
+ </div>
+    
+               
+ 
+   <div class="adiv5">
+       <button class="abut2" type="button" onclick="myFunction1()">Anladım</button>
+   </div>
+ 
+   <div class="adiv6">
+        
+           <button class="abut3" type="button" onclick="window.location.href='https://wa.me/994508316695';">Operator yardımı</button>
+           
+       </div>
+ 
+    </div>
+      
+
+</div>
+
+
+
+{% endif %}
+
+
+<script>
+    function myFunction() {
+      document.getElementById("panel").style.display = "none";
+      document.getElementById("panel2").style.display = "block";
+    }
+
+    function myFunction1() {
+      document.getElementById("number_shadow").style.display = "none";
+    }
+</script>
+        
+        <!-- categories -->
+        <section id="categories" class = "mb-5">
+            
+         
+
+            <div class="row mt-5 d-flex justify-content-around align-items-center">
+
+                <div class="col-1 m-0 p-0 d-sm-flex d-none align-items-center justify-content-center">
+                    <img src="{% static 'Icons/keyboard_arrow_left-24px.svg' %}" alt="" class = "icons-style cursor-pointer" onclick = "categoriyaScrollLeft()"> 
+                </div>
+
+                <div class="col-12 col-sm-10 d-flex m-0 p-0 align-items-center categories">
+                    <ul class = "list-unstyled d-flex m-0 w-100 h3 categories-list">
+                        <li>
+                            <a class="top50" id="top50" href="{% url 'top50' %}" style="text-decoration: none; padding: 5px; font-size: 15px; background-color: #6679FB; color: white;border-radius: 5px; ">Kəşfet</a>
+                        </li>
+                        {% for cat in categories %}
+                       
+                            <li><a href="/?category={{ cat.title }}" style="text-decoration: none; color: black;">{{ cat.title }}</a></li>
+
+                        {% endfor %}
+                        
+                   
+                        
+                    </ul>
+                </div>
+
+                <div class="col-1 m-0 p-0 d-sm-flex d-none align-items-center justify-content-center">
+                    <img src="{% static 'Icons/keyboard_arrow_right-24px.svg' %}" alt="" class = "icons-style cursor-pointer" onclick = "categoriyaScrollRight()"> 
+                </div>
+
+            </div>
+            
+        </section>
+
+
+        <section class="campaign">
+               {% for reklam in reklam %}
+               <a href="{{reklam.link}}"> <img src="{{ reklam.img.url }}" alt="" class = "w-100"></a>
+                {% endfor %}
+        </section>
+
+       
+        {% if premium %}
+        <section id="most-loaded-books">
+            <div class="row border border-left-0 border-right-0 border-top-0 pb-3 mb-5" style = 'border-color: var(--thirdColor);'>
+                <div class="col-12 d-flex align-items-end">
+                    <!-- <img src="{% static 'Icons/icon1.png' %}" alt="" class="icons-style ml-2"> -->
+                    <h3 class="section-title font-weight-bolder ml-3 text_color" style="margin-top: 25px;">Premium </h3>
+
+                </div>
+            </div>
+
+            <div class="books d-flex justify-content-around flex-wrap posts" style="margin: -28px;">
+                {% for post in post %}
+                <div class="group_details" style="color: black; text-decoration: none; height: 290px; ">
+
+                    <div class="card mb-5 border-5 shadow" style="max-width: 36rem; border-radius: 15px; height: 290px; width: 200px;">
+                    
+                    {% if post.preminium == True %}
+                    <div class="premium">Premium  
+                    </div>
+                    {% endif %}
+                        <span class="open_elan_menu d-inline-block iconmenu" style="position: absolute;  right: 20px; top: 14px; height: 28px; width: 80px; z-index: 1;">
+                          <i class="fas fa-ellipsis-v" ></i>
+                        </span>
+
+                    <div class="row no-gutters">
+                        <a   href="{% url 'post-detail' post.id %}" style="color: black; text-decoration: none; height: 105px;">
+
+                            
+                    <div class="" style="border-radius: 50% !important; height: 120px; width: 120px; padding: 10px; padding-left: 15px; margin-left: 30%; margin-top: 15px;">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% else %}
+                    <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% endif %}
+                    </div>
+
+
+                    <div class="col-8">
+                    <div class="card-body" style="height: 100%; ">
+
+                        <a href="{% url 'post-detail' post.id %}" style="text-decoration: none;">
+                            <div class="center" style="width: 120px;
+                            text-align: center;
+                            margin-top: 26px;
+                            margin-left: 25px;">
+                            <h2 style="font-weight: 600; color: black;">{{ post.title }}</h2>
+        
+                            <p class="blockquote text_color m-0 mb-1" style="width: 120px;"><span style="color: grey;">{{ post.category }}</span></p>
+                            </div>
+                        </a>
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="sosial_network_icon" >
+                            {% if post.linktype == 'Whatsapp' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Telegram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/telegram-app--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Instagram' %}
+                    <div class="socialmediaicn" style="position: absolute; right:22px; top: 80px; height: 35px; width: 35px;"><img src="{% static 'Icons/instalogo.png' %}" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'TikTok' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/material/50/000000/tiktok.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Facebook' %}                                                                       
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Youtube' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="{% static 'Icons/youtubeicon.png' %}" width="100%" height="100%"/></div>
+
+                    {% endif %}
+                            <!-- <a href=""><i class="fab fa-whatsapp" style="font-size: 14px;color: green;"></i></a> -->
+                        </span>
+
+                       
+
+                        <ul class="elan_menu_list  flex-column " style="    top: -145px;left: 55px;position: relative; height: 95px; border-radius: 5px;">
+
+                            <li class="elan_menu_list_item" >
+                               <a href="{% url 'post-detail' post.id %}" >Ətraflı</a>
+                            </li>
+
+                            <li class="elan_menu_list_item" >
+                                <a  onclick="sharefuncsecn();yourfunc();" idim="{{ post.id }}" username="{{ request.user.username }}" id="buton">Paylaş </a>
+                                
+
+
+
+                            
+                            </li>
+
+                            <li class="elan_menu_list_item" style="z-index: 10;border-radius: 5px;
+                            ">
+                               <a href="http://Wa.me/994508316695" onclick="myFunction()"> Bildir</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="row" style="display: flex; justify-content: space-between; ">
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                </div>
+                {% endfor %}
+                </a>
+
+            </div>
+            
+        </section>
+
+        {% endif %}
+
+           <!-- reklam -->
+        {% for reklam in banners %}
+            {% if reklam.order == 1 %}
+           <a href="{{ reklam.link }}">
+             <div class="w-100 shadow p-5 my-4">
+                <img src="{{ reklam.img.url }}" alt="">
+            </div>
+        </a>
+            {% endif %}
+        {% endfor %}
+        <!-- en cox baxilanlar -->
+
+        <section id="most-loaded-books">
+            <div class="row border border-left-0 border-right-0 border-top-0 pb-3 mb-5" style = 'border-color: var(--thirdColor);'>
+                <div class="col-12 d-flex align-items-end">
+                    <!-- <img src="{% static 'Icons/icon1.png' %}" alt="" class="icons-style ml-2"> -->
+                    <h3 class="section-title font-weight-bolder ml-3 text_color" style="margin-top: 25px;">Ən son yüklənənlər </h3>
+
+                </div>
+            </div>
+
+            <div class="books d-flex justify-content-around flex-wrap posts" style="margin: -28px;">
+                {% for post in post %}
+                <div class="group_details" style="color: black; text-decoration: none; height: 290px; ">
+
+                    <div class="card mb-5 border-5 shadow" style="max-width: 36rem; border-radius: 15px; height: 290px; width: 200px;">
+                    
+                    {% if post.preminium == True %}
+                    <div class="premium">Premium  
+                    </div>
+                    {% endif %}
+                        <span class="open_elan_menu d-inline-block iconmenu" style="position: absolute;  right: 20px; top: 14px; height: 28px; width: 80px; z-index: 1;">
+                          <i class="fas fa-ellipsis-v" ></i>
+                        </span>
+
+                    <div class="row no-gutters">
+                        <a   href="{% url 'post-detail' post.id %}" style="color: black; text-decoration: none; height: 105px;">
+
+                            
+                    <div class="card-img rounded" style="border-radius: 50% !important; height: 120px; width: 120px; padding: 10px; padding-left: 15px; margin-left: 30%; margin-top: 15px;">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% else %}
+                    <img src="{% static 'Icons/defaultimg.jpeg' %}"  style="border-radius: 50% !important; object-fit: cover; width: 100%; height: 100%;"  class="card-img rounded shadow" alt="...">
+                    {% endif %}
+                    </div>
+
+
+                    <div class="col-8">
+                    <div class="card-body" style="height: 100%; ">
+                        <a href="{% url 'post-detail' post.id %}" style="text-decoration: none;">
+                            <div class="center" style="width: 120px;
+                            text-align: center;
+                            margin-top: 26px;
+                            margin-left: 25px;">
+                            <h2 style="font-weight: 600; color: black;">{{ post.title }}</h2>
+        
+                            <p class="blockquote text_color m-0 mb-1" style="width: 120px;"><span style="color: grey;">{{ post.category }}</span></p>
+                            </div>
+                        </a>
+
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <span class="sosial_network_icon" >
+                            {% if post.linktype == 'Whatsapp' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Telegram' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/telegram-app--v1.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Instagram' %}
+                    <div class="socialmediaicn" style="position: absolute; right:22px; top: 80px; height: 35px; width: 35px;"><img src="{% static 'Icons/instalogo.png' %}" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'TikTok' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/material/50/000000/tiktok.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Facebook' %}                                                                       
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="https://img.icons8.com/color/48/000000/facebook-new.png" width="100%" height="100%"/></div>
+                    {% elif post.linktype == 'Youtube' %}
+                    <div class="socialmediaicn" style="position: absolute; right: 22px; top: 80px; height: 35px; width: 35px;"><img src="{% static 'Icons/youtubeicon.png' %}" width="100%" height="100%"/></div>
+
+                    {% endif %}
+                            <!-- <a href=""><i class="fab fa-whatsapp" style="font-size: 14px;color: green;"></i></a> -->
+                        </span>
+
+                       
+
+                        <ul class="elan_menu_list  flex-column " style="    top: -145px;left: 55px;position: relative; height: 95px; border-radius: 5px;">
+
+                            <li class="elan_menu_list_item" >
+                               <a href="{% url 'post-detail' post.id %}" >Ətraflı</a>
+                            </li>
+
+                            <li class="elan_menu_list_item" >
+                                <a  onclick="sharefuncsecn();yourfunc();" idim="{{ post.id }}" username="{{ request.user.username }}" id="buton">Paylaş </a>
+                                
+
+
+
+                            
+                            </li>
+
+                            <li class="elan_menu_list_item" style="z-index: 10;border-radius: 5px;
+                            ">
+                               <a href="http://Wa.me/994508316695" onclick="myFunction()"> Bildir</a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="row" style="display: flex; justify-content: space-between; ">
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                    </div>
+
+                </div>
+                {% endfor %}
+                </a>
+
+            </div>
+            
+        </section>
+
+           <!-- reklam -->
+        {% for reklam in banners %}
+            {% if reklam.order == 1 %}
+           <a href="{{ reklam.link }}">
+             <div class="w-100 shadow p-5 my-4">
+                <img src="{{ reklam.img.url }}" alt="">
+            </div>
+        </a>
+            {% endif %}
+        {% endfor %}
+        
+
+       
+
+    </div> 
+
+    <script>
+        function yourfunc(){
+         alert("Link kopyalandı");
+
+        }
+    </script>
+    <script>
+        $('.open_elan_menu').on('click',function(){
+              
+              $(this).parents('.group_details').find('.elan_menu_list').css({'display':'flex'})
+          });
+          
+        $( document ).ready(function() {
+            
+        $('.like-form').submit(function(e){
+            e.preventDefault();
+                
+                
+                const post_id = $(this).attr('id')
+                
+                const likeText = $(`.like-btn${post_id} p`).text()
+                const trim = $.trim(likeText)
+
+                const url = $(this).attr('action')
+                
+                let res;
+                const likes = $(`.like-count${post_id}`).text()
+                const trimCount = parseInt(likes)
+                
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: {
+                        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                        'post_id':post_id,
+                    },
+                    success: function(response) {
+                        if(trim === 'Unlike') {
+                            $(`.like-btn${post_id} img`).src('{% static "Icons/favorite_border.svg" %}')
+                            res = trimCount - 1
+                        } else {
+                            $(`.like-btn${post_id} img`).text('{% static "Icons/favorite_border.svg" %}')
+                            res = trimCount + 1
+                        }
+
+                        $(`.like-count${post_id}`).text(res)
+                    },
+                    error: function(response) {
+                        console.log('error', response)
+                    }
+                })
+              });
+
+        })
+    </script>
+<script>
+    function sharefunc(){
+        const a = document.getElementsByName("linkfull")[0].value;
+        console.log(a);
+        navigator.clipboard.writeText(a);
+    };
+
+    const element = document.querySelector('#buton');
+
+    function sharefuncsecn(){
+        let idim = element.getAttribute("idim");
+        let username = element.getAttribute('username');
+        
+        
+
+        const linkimiz = 'www.linker.az/post/' + username + '/' + idim;
+        navigator.clipboard.writeText(linkimiz);
+    }
+</script>
+<script>
+    function myFunction() {
+      alert("Kanal bildirildi!");
+    }
+    </script>
+     <script>
+        function yourfunc(){
+         alert("Link kopyalandı");
+
+        }
+    </script>
+        {% endblock %}
+  

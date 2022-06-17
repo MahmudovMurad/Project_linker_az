@@ -1,0 +1,92 @@
+.coinst_system{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter';
+    width: 80%;
+    margin: auto;
+    margin-bottom: 20px;
+    height: 100px;
+    color: white;
+    background-color: #6679fb;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.coins_sub{
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+    bottom: -29px;
+}
+
+.coins_ttl{
+    font-size: 18px;
+}
+
+.first_coins_part{
+    margin-left: 50px;
+}
+
+.coins_value{
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: 600;
+}
+
+.coins_noti {
+    display: flex;
+    padding: 5px 10px;
+    margin-top: 24px;
+    width: 180px;
+    background-color: rgb(127, 166, 220);
+    border-radius: 5px;
+}
+
+.coins_noti_icon{
+    width: 18px;
+}
+
+.coins_noti_txt{
+    margin-left: 8px;
+}
+
+.second_coins_part{
+    margin-right: 20px;
+    position: relative;
+}
+
+.coins_help{
+    position: absolute;
+    right: 0;
+    font-size: 10px;
+    padding: 2px 8px;
+    letter-spacing: 1px;
+    text-align: center;
+    width: 65px;
+    background-color: rgb(127, 166, 220);
+    border-radius: 3px;
+    
+}
+
+.coins_value sub{
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .coinst_system{
+        width: 100%;
+       
+    }
+
+    .first_coins_part{
+        margin-left: 20px;
+    }
+    .second_coins_part{
+        margin-left: 20px;
+    }
+    
+}
+

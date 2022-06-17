@@ -1,0 +1,542 @@
+{% load static %}
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="{% static 'Css/alert.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/coins.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linker</title>
+    <link rel="icon" href="static/Icons/logo2.png" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'Scss/main.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/book-cards.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/selected-dropdown.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/animation.css' %}">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- tablet style -->
+    <link rel="stylesheet" media = "(max-width: 992px)" href="{% static 'Scss/tablet.css' %}">
+    <!-- mobile style -->
+    <link rel="stylesheet" media = "(max-width: 576px)" href="{% static 'Scss/mobile.css' %}">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'Css/newcss.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/details.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/elanlar.css' %}">
+    <link rel="stylesheet" href="{% static 'Css/register.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <style>
+        .posts a {
+            margin-top: 0px !important;
+        }
+
+        .mb-5,
+        .my-5 {
+            margin-bottom: 50px !important;
+        }
+        .sosial_network_icon i {
+            font-size: 14px; 
+              
+        }
+        .like_icon {
+              
+             margin-right: 10px;
+        }
+        .group_details {
+            margin-bottom: 15px;
+        }
+        .sosial_network_icon i {
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .float-right {
+            margin-top: 3px;
+        }
+        .like_count {
+            margin-top: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    {% if request.path == '/account/login/' or request.path == '/account/register/' %}
+
+    {% else %}
+    <a href="{% url 'post_create' %}" class="add-book-btn" id="adminUser" >+</a>
+    {% endif %}
+
+    
+
+    <div class="burger-menu-container" style="z-index: 10000">
+        <div class="burger-menu-bg" onclick = "showBurgerMenu()"></div>
+        <ul class="list-group h3 bg-white text-center burger-menu">
+            <li style="background-color: #6679FB;" class="list-group-item text-center font-weight-bold text-white position-relative">
+                MENU 
+                <img src="{% static 'Icons/close.svg' %}" alt="" class = "close-burger-menu cursor-pointer position-absolute" onclick = "showBurgerMenu()">
+            </li>
+            <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="{% url 'home' %}" class = "text-dark py-3 w-100 h-100 d-flex justify-content-center">Ana Səhifə</a></li>
+            <!-- <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="{% url 'post_create' %}" class = "text-dark py-3 w-100 h-100 d-flex justify-content-center">Yeni elan</a></li> -->
+            <!-- <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="Pages/favorites.html" class = "text-dark py-3 w-100 h-100 d-flex justify-content-center">Bəyəndiklərim</a></li> -->
+            {% if request.user.is_authenticated %}
+            <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="{% url 'profile' request.user %}" class = "text-dark py-3 w-100 h-100 d-flex justify-content-center">Profil</a></li>
+            {% endif %}
+            <!-- <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="{% url 'profile' request.user %}" class = "text-dark py-3 w-100 h-100 d-flex justify-content-center">Yadda saxlanılanlar</a></li> -->
+            <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a target="_blank" href="https://wa.me/994504400895" class = "text-dark py-3 w-100 h-100 d-flex justify-content-center">Əlaqə</a></li>
+            
+            {% if not request.user.is_authenticated %}
+            <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="{% url 'login' %}" class = "btn btn-outline-success py-3 w-100 h-100 d-flex justify-content-center" style = "font-size: 1.75rem;">Daxil ol</a></li>
+            <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="{% url 'register' %}" class = "btn btn-outline-danger py-3 w-100 h-100 d-flex justify-content-center" style = "font-size: 1.75rem;">Qeydiyyat</a></li>
+            
+            {% else %}
+            <li class="list-group-item text-center list-group-item-action cursor-pointer border-0 px-0"><a href="{% url 'logout' %}" class = "text-dark py-3 w-100 h-100 d-flex justify-content-center">Çıxış et</a></li>
+            {% endif %} 
+            <!-- <li class="list-group-item text-center cursor-pointer border">
+                Dəstək üçün bizi paylaşın             
+                <div class="text-center">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://buybookapp.herokuapp.com/" class = "sosial-media-icon"><img src="{% static 'Icons/facebook.png' %}" alt=""></a>
+                    <a href="https://twitter.com/home?status=https://buybookapp.herokuapp.com/" class = "sosial-media-icon"><img src="{% static 'Icons/twitter.png' %}" alt=""></a>
+                    <a href="#" class = "sosial-media-icon"><img src="{% static 'Icons/instagram.png' %}" alt=""></a>
+                    <a href="https://wa.me/?text=buybookapp.herokuapp.com/" class = "sosial-media-icon"><img src="{% static 'Icons/whatsapp.png' %}" alt=""></a>
+                </div>
+            </li> -->
+        </ul>
+    </div>
+
+
+    <div class="container-xl">
+        <!-- header -->
+        <section class="header" >
+            <nav class = "d-flex flex-wrap flex-lg-nowrap mb-5 mb-lg-0">
+                <!-- menu and logo -->
+                <div class="nav-one d-flex justify-content-start">   
+                    <div class="menu">
+                        <img src="{% static 'Icons/menu.svg' %}" alt="" class = "icons-style cursor-pointer" onclick = "showBurgerMenu()">
+                    </div>
+                    <div class="logo">
+                        <a href = "{% url 'home' %}"><img style="margin-top: 3px;" src="{% static 'Icons/logo3.png' %}" class = "ml-3" alt=""></a>
+                    </div>
+                </div>
+                <!-- search  -->
+
+                
+
+                {% if request.path == '/account/login/' or request.path == '/account/register/' %}
+                <div class="nav-two d-flex justify-content-center">
+
+                </div>
+                
+                
+                {% else %}
+                <div style="display: block;" class="social_all">
+                <div class="nav-two d-flex justify-content-center">
+                    <form class="search px-3 align-items-center">
+                        <span></span>
+
+                        <input name="query" value="{{ request.GET.query }}" type="text" class = "search-input w-75" placeholder="Axtarış">
+                       
+                                                                        
+                        
+                         
+                       
+                                
+                        <button style = "border: none; background: transparent; outline: none;">
+                            <img src="{% static 'Icons/search.svg' %}" alt="" class = "search-icon cursor-pointer" style = "width: 2rem;"> 
+                        </button>
+                    
+
+
+
+                        
+                </div>
+        
+            <div class="checkboxs"  style=" display: flex; flex-direction: row;  margin-top: 24px;"> 
+                <div style="display: flex;">
+                <!-- <input style="" type="checkbox" id="Facebook" name="facebook" value="Facebook" > -->
+                                 
+                <a style="padding-top: 5px;" href="{% url 'facebook_posts' %}" class="facebook label_radio" for="Facebook">Facebook</a> 
+                 
+                <!-- <input style=""  type="checkbox" id="Telegram" name="telegram" value="Telegram" > -->
+                    
+                  <a style="padding-top: 5px;" href="{% url 'telegram_posts' %}" class="telegram label_radio" for="Telegram">Telegram</a>
+                       
+                  <!-- <input style="" type="checkbox" id="Whatsapp" name="whatsapp" value="Whatsapp" > -->
+                                                                                       
+                  <a style="padding-top: 5px;" href="{% url 'wp_posts' %}" class="whatsapp label_radio" for="Whatsapp">Whatsapp</a>
+
+                  <!-- <input style=""  type="checkbox" id="Instagram" name="instagram" value="Instagram" > -->
+                                                                            
+                  <a style="padding-top: 5px;" href="{% url 'insta_posts' %}" class="instagram label_radio" for="Instagram">Instagram</a>
+
+                  <!-- <input style="" type="checkbox" id="Youtube" name="youtube" value="Youtube" > -->
+                                                                            
+                  <a style="padding-top: 5px;" href="{% url 'youtube_posts' %}" class="label_radio youtube" for="Youtube">Youtube</a>
+
+                  <!-- <input style="" type="checkbox" id="TikTok" name="tiktok" value="TikTok" > -->
+                                                                            
+                  <a style="padding-top: 5px;" href="{% url 'tiktok_posts' %}" class="label_radio tiktok" for="TikTok">TikTok</a>
+                </div>
+            </div>
+            </div>
+            
+            
+                {% endif %}
+                
+
+                <!-- user and shop -->
+                <div class="nav-three d-flex justify-content-end"  >
+
+                <!-- <div class="nav-three d-flex justify-content-end"> -->
+                    <a href = "{% url 'post_create' %}" class="btn btn-danger p-3 fs-6 mr-2 header-add-book" style="background-color: #6679FB !important; border-color: #6679FB !important;">Yeni elan</a>
+                    
+                    <!-- <a href="" class = "cursor-pointer icons-style mr-2"><img src="{% static 'Icons/ribbon.png' %}" alt="" class = "icons-style " height="25px"></a> -->
+                     {% if request.user.is_authenticated %}
+                      <a href = "{% url 'profile' request.user %}" class = "cursor-pointer icons-style mr-2"><img src="{% static 'Icons/person.svg' %}" class = "icons-style "></a>
+                    {% endif %}
+                    <!-- <a href = "Pages/favorites.html" class="cursor-pointer"><img src="{% static 'Icons/favorite.svg' %}"style = "width: 2.5rem;" alt=""></a> -->
+                </div>
+            </nav>
+            <div style="display: flex; justify-content: center;">
+            
+            
+            </div>
+        </form>    
+        </section>
+
+
+
+{% block  menu %}
+
+{% endblock %}
+
+<section class="footer text-center p-5" style = "background: var(--secondColor);">
+
+    <div class="d-flex align-items-center w-100 justify-content-center">
+        <img src="{% static 'Icons/copyright.svg' %}" alt="" class = "pr-2" style = "width: 2rem;">
+        <span class="h5 text-white m-0">2022 Linker - müəllif hüquqları qorunur.</span>
+    </div>
+
+    <div class="text-center">
+        <a href="mailto:Contact.linkerglobal@gmail.com" class = "sosial-media-icon"><img src="{% static 'Icons/gmail.png' %}" alt=""></a>
+        <!-- <a href="#" class = "sosial-media-icon"><img src="{% static 'Icons/facebook.png' %}" alt=""></a>
+        <a href="#" class = "sosial-media-icon"><img src="{% static 'Icons/twitter.png' %}" alt=""></a> -->
+        <a target="_blank" href="https://www.instagram.com/linkerglobal/" class = "sosial-media-icon"><img src="{% static 'Icons/instagram.png' %}" alt=""></a>
+    </div>
+
+</section>
+
+<div style="background-color: #6679FB !important;" class="align-items-center justify-content-center cursor-pointer bg-danger p-3 rounded-lg shadow go-to-back" onclick = " goToBack()">
+    <img src="{% static 'Icons/up-arrow.svg' %}" alt="" class = "icons-style">
+</div>
+<div class="mobil-topsite-icon " onclick = "goToBack()" style="z-index: 100000;">
+    <div  class="top_mob go-to-back">Yuxarı qayıt</div>
+</div>
+<script src = "{% static 'Js/pagesScroll.js' %}"></script>
+
+<script src = "{% static 'Js/header.js' %}"></script>
+<script src = "{% static 'Js/categories.js' %}"></script>
+<script src = "{% static 'Js/integration.js' %}"></script>
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YER23W8Z50"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YER23W8Z50');
+</script>
+
+
+
+<script src = "{% static 'Js/selectDropdown.js' %}"></script>
+<script src = "{% static 'Js/main.js' %}"></script>
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- api -->
+<script src = "{% static 'js/api.js' %}"></script>
+<script src = "{% static 'Js/pagesScroll.js' %}"></script>
+
+<script src = "{% static 'Js/personal-cabinet.js' %}"></script> 
+
+
+<style>
+    .tgchange{
+
+        background-color: #37AEE2;
+        color: white !important;
+        border: 1px #37AEE2 solid;
+    }
+    .whatsappchange{
+        background-color: #25D366;
+        color: white;
+        border: 1px #25D366 solid;
+    }
+    .fbchange{
+        background-color:  #1A4789;
+        color: white;
+        border: 1px  #1A4789 solid;
+    }
+
+    .instachange{
+        background-color: #BC3081;
+        border: 1px #BC3081 solid;
+        color: white;
+    }
+
+    .youtubechange{
+        background-color: #FF0000;
+        color: white;
+        border: 1px #FF0000 solid;
+    }
+
+    .tiktokchange{
+        background-color: #000000;
+        color: white;
+        border: 1px #000000 solid;
+    }
+
+</style>
+
+<script>
+    document.querySelector(".nav-three").addEventListener('click',showRegister);
+      function showRegister() {
+        // event.preventDefault();
+          var register = document.querySelector(".adminAndUser");
+          // console.log(register);
+          if (register.style.display === "none") {
+          register.style.display = "block";
+      } else {
+          register.style.display = "none";
+      }
+      }
+  </script>
+  <script>
+     document.querySelector("#adminUser").addEventListener('click',showRegister);
+      function showRegister() {
+        // event.preventDefault();
+          var register = document.querySelector(".adminAndUser");
+          // console.log(register);
+          if (register.style.display === "none") {
+          register.style.display = "block";
+      } else {
+          register.style.display = "none";
+      }
+      }
+  </script>
+
+<script>
+
+
+
+jQuery(function($){
+    $("#Telegram").click(function () {
+        $('label[for=Telegram]').toggleClass('tgchange', this.checked);
+        $('.axtar_bbttn').css('display', 'block');
+    });
+
+    $("#Whatsapp").click(function () {
+        $('label[for=Whatsapp]').toggleClass('whatsappchange', this.checked);
+        $('.axtar_bbttn').css('display', 'block');
+    });
+
+    $("#Facebook").click(function () {
+        $('label[for=Facebook]').toggleClass('fbchange', this.checked);
+        $('.axtar_bbttn').css('display', 'block');
+    });
+    $("#Instagram").click(function () {
+        $('label[for=Instagram]').toggleClass('instachange', this.checked);
+        $('.axtar_bbttn').css('display', 'block');
+    });
+
+    $("#Youtube").click(function () {
+        $('label[for=Youtube]').toggleClass('youtubechange', this.checked);
+        $('.axtar_bbttn').css('display', 'block');
+    });
+    $("#TikTok").click(function () {
+        $('label[for=TikTok]').toggleClass('tiktokchange', this.checked);
+        $('.axtar_bbttn').css('display', 'block');
+    });
+    $('.categoryclass').click(function(){
+        var check = $(this).find('input');
+      
+        if (check.is(":checked")){
+         
+            $(this).find('label').css('color', 'red');
+            $('.axtar_bbttn').css('display', 'block');
+        } else{
+            $(this).find('label').css('color', 'black');
+        }
+            
+      
+        
+    
+    });
+
+    $('.search-input').on('input', function() {
+    if (this.value.trim().length >= 1) {
+    // call your function here
+    $('.axtar_bbttn').css('display', 'block');  
+        }
+        });
+
+    
+
+})
+
+
+</script>
+
+
+<script>
+    $('.save_btn').on('click', function () {
+        $(this).toggleClass('my_active');
+
+        if ($(this).hasClass('my_active')) {
+            $('.far.fa-bookmark').css({ 'display': 'none' });
+            $('.fas.fa-bookmark').css({ 'display': 'block' });
+        }
+
+        else {
+            $('.far.fa-bookmark').css({ 'display': 'block' });
+            $('.fas.fa-bookmark').css({ 'display': 'none' });
+        }
+    });
+
+   
+    var f = false;
+    $('.like_heart').on('click', function () {
+        var likeCount = $('.like_count').text(),
+            counter = parseInt(likeCount);
+        f = !f;
+        
+        if (f) {
+            counter++;
+            $('.fas.fa-heart').css({'display':'inline-block'});
+            $('.far.fa-heart').css({'display':'none'});
+        }
+        else{counter--;
+            $('.fas.fa-heart').css({'display':'none'});
+            $('.far.fa-heart').css({'display':'inline-block'});
+        }
+
+        $('.like_count').text(counter);
+
+    });
+
+</script>
+
+<script>
+    $('.save_btn').on('click',function(){
+        $(this).toggleClass('my_active');
+
+        if( $(this).hasClass('my_active')){
+            $('.far.fa-bookmark').css({'display':'none'});
+            $('.fas.fa-bookmark').css({'display':'block'});
+        }
+
+        else{
+            $('.far.fa-bookmark').css({'display':'block'});
+            $('.fas.fa-bookmark').css({'display':'none'});
+        }
+    });
+</script>
+
+<script>
+
+    $('.like_icon').on('click',function(){
+        
+        var d=$(this).siblings('.like_count').text();
+        var count=parseInt(d);
+        var f = false;
+        $(this).find('.fas.fa-heart').toggleClass('my_active');
+        if($(this).find('.fas.fa-heart').hasClass('my_active')){
+            count++;
+            $(this).find('.far.fa-heart').css({'display':'none'});
+        }
+        else{
+            count--;
+            $(this).find('.far.fa-heart').css({'display':'block'});
+            
+        }
+
+        $(this).siblings('.like_count').text(count);
+        
+    });
+
+
+    $('.open_elan_menu').on('click',function(){
+      
+        $(this).parents('.list_item').find('.elan_menu_list').css({'display':'flex'})
+    });
+
+    $('*').on('click',function(e){
+        if(!$(e.target).is('.elan_menu_list') && !$(e.target).is('.elan_menu_list *') && 
+        !$(e.target).is('.open_elan_menu') && !$(e.target).is('.open_elan_menu *') ){
+            $('.elan_menu_list').css({'display':'none'});
+        }
+    });
+
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+            window.onload = function () {
+            OpenBootstrapPopup();
+           
+        };
+        function OpenBootstrapPopup() {
+            $("#myModal").modal("show");
+        }
+        
+       
+    </script>
+    <script>
+        function sharefunc(){
+            const a = document.getElementsByName("linkfull")[0].value;
+            console.log(a);
+            navigator.clipboard.writeText(a);
+        };
+
+        const element = document.querySelector('#buton');
+
+        function sharefuncsecn(){
+            let idim = element.getAttribute("idim");
+            let username = element.getAttribute('username');
+            
+            
+
+            const linkimiz = 'www.linker.az/post/' + username + '/' + idim;
+            navigator.clipboard.writeText(linkimiz);
+        }
+    </script>
+     <script>
+        function yourfunc(){
+         alert("Link kopyalandı");
+
+        }
+    </script>
+    <script>
+        $('.open_elan_menu').on('click',function(){
+              
+              $(this).parents('.group_details').find('.elan_menu_list').css({'display':'flex'})
+          });
+        </script>
+
+
+
+<script>
+    
+</script>
+</body>
+</html>

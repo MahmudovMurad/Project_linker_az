@@ -1,0 +1,247 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block menu %}
+
+    <link rel="stylesheet" href="{% static 'Scss/layout.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/pages-inputs.css' %}">
+    <link rel="stylesheet" href="{% static 'Scss/selected-dropdown.css' %}">
+    <!-- Bootstrap 4 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- tablet style -->
+    <link rel="stylesheet" media = "(max-width: 992px)" href="{% static 'Scss/tablet.css' %}">
+    <!-- mobile style -->
+    <link rel="stylesheet" media = "(max-width: 576px)" href="{% static 'Scss/mobile.css' %}">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+                
+        function preback() { window.history.forward(); }
+            setTimeout("preback()", 0);
+            window.onunload = function() {null};
+ </script>
+
+
+<style>
+#share:hover{
+    background-color: #6676fb!important;
+    color: white!important;
+    
+
+}
+.share_2:hover{
+    color: white;
+}
+
+ .btn-outline-danger:hover{
+     color: #ffff!important;
+     background-color: #6679fb;
+ }
+    
+        .search{
+            visibility: hidden;
+        }
+    
+.share_2:focus{
+    color:  white !important;
+}
+.loading{
+       	opacity: 95%;
+     	display: none;
+       	background-color: white;
+       	height: 100%;
+       	position: fixed;
+        z-index: 5;
+       	left: 0;
+       	top: 0;
+       	width: 100%;
+
+       }
+       
+
+       .load{
+        text-align: center;
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+       }
+       .add-book-btn{
+           display: none !important;
+       }
+       .social_all{
+        display: none !important;
+    }
+       .loader {
+                  border: 8px solid #f3f3f3;
+                  border-radius: 50%;
+                  border-top: 8px solid #3498db;
+                  width: 50px;
+                  height: 50px;
+                  margin: auto;
+                  -webkit-animation: spin 2s linear infinite; /* Safari */
+                  animation: spin 2s linear infinite;
+                }
+                
+                /* Safari */
+                @-webkit-keyframes spin {
+                  0% { -webkit-transform: rotate(0deg); }
+                  100% { -webkit-transform: rotate(360deg); }
+                }
+                
+                @keyframes spin {
+                  0% { transform: rotate(0deg); }
+                  100% { transform: rotate(360deg); }
+                }
+</style>
+
+        <section id="insert-book">
+            <h1 style="color: #6676fb !important; margin-top: 25px;" class="h1 display-4 font-weight-bolder text-danger text-center p-4 mb-3 mb-md-3">Elan yerləşdir</h1>
+
+            
+                    <form  class = "mt-5" method="POST" enctype="multipart/form-data" >
+                        {% csrf_token %}
+                        
+                        <div class="row">
+                            <div>
+                                {% if messages %}
+                                       {% for message in messages %}
+                                       <div class="alert alert-danger">
+                                       <strong>{{ message }}</strong>
+                                       </div>
+                                       {% endfor %}
+                                 {% endif %}
+                               </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex align-items-center justify-content-between my-5 pl-4 input-container">
+                                    {{ form.title }} 
+                                    <div class="input-warning text-danger h5" style="color: #6676fb !important;"></div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between my-5 pl-4 input-container">
+                                    {{ form.link }}
+                                    <div class="input-warning text-danger h5" style="color: #6676fb !important;"></div>
+                                </div>
+                                   
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-5 px-4 input-container ">
+                                    
+                                        {{ form.category }}
+                                    
+                                    
+                                    <div class="input-warning text-danger h5" style="color: #6676fb !important;"></div>
+                                    
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between mt-0 mt-md-5 mb-5 px-4 input-container">
+                                    
+                                    {{ form.linktype }}
+                                
+                                
+                                <div class="input-warning text-danger h5" style="color: #6676fb !important;"></div>
+                                
+                            </div>
+                            
+                                
+                                
+                                <label style="background-color: #6676fb !important;" for="book-image-upload" class = "d-flex align-items-center justify-content-between my-5 px-4 input-container bg-danger" style = "cursor: pointer;">
+                                        <p class="h2 font-weight-bold pl-2 text-white m-0" >Profil şəkli</p>
+                                        <div class="update_buttons_none" hidden="hidden">{{ form.image }}</div>
+                                        
+                                       
+                                        <div class="input-warning text-danger h5" style="color: #6676fb !important;"></div>
+                                        <img src="{% static 'Icons/photo_size_select_actual.svg' %}" alt="" class = " icons-style">
+                                </label>
+                                <img id="image11" style="width: 100%;">
+                                {{ form.description }} 
+                                <div class="input-warning text-danger h5" style="color: #6676fb !important; padding: 10px;"></div>
+                            </div>
+                            
+                        </div>
+                        <div class="text-center" >
+                            <button type="submit" style="color: #6676fb ; border-color: #6676fb !important;" class="btn btn-lg px-5 font-weight-bold my-4 btn-outline-danger old my-4 btn-outline-danger p-4 shadow" id="share">
+                                <a href="{% url 'home' %}" target="_blank" style="text-decoration: none;" class="share_2">Paylaş</a>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+    </div>
+
+    <div class="loading" >
+        <div class="load">
+         
+    
+    
+          <div class="loader"></div>
+    
+          <div style="margin-top: 5px">Elanınız yüklənir</div>
+          
+          <div> Zəhmət olmasa gözləyin... </div>
+    
+    </div>
+    </div>
+   
+    <script src = "{% static 'Js/header.js' %}"></script>  
+    <script src = "{% static 'Js/selectDropdown.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+
+        $('#personForm').on('submit', function(){
+        $('body').css('overflow', 'hidden');
+        $('.loading').fadeIn();
+
+
+        });
+
+        });
+    </script>
+
+    <script>
+        
+        var input1= document.getElementById('book-image-upload');
+        var showimage1 = document.getElementById('image11');
+        
+        input1.addEventListener('change', function(){
+
+      
+
+        const file= this.files[0];
+
+
+        if (file) {
+            const reader = new FileReader();
+
+            showimage1.style.display= "block";
+
+
+
+        reader.addEventListener('load', function(){
+            showimage1.setAttribute('src', this.result);
+
+
+    });
+
+    reader.readAsDataURL(file);
+
+
+
+
+} else{
+    showimage1.style.display= null;
+    showimage1.setAttribute('src', "");
+
+}
+
+});
+    </script>
+    {% endblock %}
+    
